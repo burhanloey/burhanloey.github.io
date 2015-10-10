@@ -4,8 +4,11 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+This is a personal blog from someone(me) who is exploring the world of technology. The blog owner is a Java enthusiast and computer vision hobbyist looking for a way to bring either human senses to computer world, or computer capabilities to human world.
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
+Current achievements: Java, JavaFX, OpenCV, Digital Image Processing, Wordpress, HTML5, CSS3, JavaScript, jQuery, KnockoutJS, Go
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+Planned for revision: Prolog, Natural Language Processing, Machine Learning, Android
+
+New objectives: C++, Rust, Scala, GWT, Fine Art, Piano
+
