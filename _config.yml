@@ -4,7 +4,7 @@ email: burhan_loey@yahoo.com.my
 description: > # this means to ignore newlines until "baseurl:"
   Welcome to burhanloey's blog. This is a personal blog from someone(me) who is
   exploring the world of technology. The blog owner is a Java enthusiast and
-  a computer vision hobbyist looking for a way to bring either human senses to
+  computer vision hobbyist looking for a way to bring either human senses to
   computer world, or computer capabilities to human world.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://github.com/burhanloey" # the base hostname & protocol for your site
