@@ -40,7 +40,7 @@ function verifyPassword() {
 
 Tetapi masalahnya condition untuk if else antara kedua-dua function tersebut adalah berlainan.
 
-Dalam functional programming, semua benda kita boleh jadikan function. Jadi, secara teorinya kita akan jadikan condition untuk if else tersebut sebagai function, kemudian kita akan hantar function tersebut sebagai parameter untuk closure. Saya akan tunjukkan perlahan-lahan menggunakan salah satu function tersebut.
+Dalam functional programming, semua benda kita boleh jadikan function, dan kita juga boleh passing function melalui parameter. Jadi, secara teorinya kita akan jadikan condition untuk if else tersebut sebagai function, kemudian kita akan hantar function tersebut melalui parameter untuk closure. Saya akan tunjukkan perlahan-lahan menggunakan salah satu function tersebut.
 
 Function yang asal adalah seperti ini:
 
@@ -88,9 +88,49 @@ function validatePassword() {
 }
 {% endhighlight %}
 
-Akhirnya, kita sudah menjadikan condition tersebut sebagai sebuah function.
+Akhirnya, kita sudah menjadikan condition tersebut sebagai sebuah function, dan kita boleh asingkan condition tersebut di luar, seperti berikut:
 
-Sekarang untuk menyelesaikan masalah code yang berulang, kita akan menggunakan closure, sama seperti di post sebelum ini. Kita akan buat function 'toggleIcon()' dengan parameter 'condition' untuk closure, seperti berikut:
+{% highlight javascript %}
+function() {
+    return $("#password-input").val().length >= 6;
+}
+
+function validatePassword(condition) {
+    var ok = condition();
+
+    if (ok) {
+        $("#password-check").removeClass("glyphicon-remove");
+        $("#password-check").addClass("glyphicon-ok");
+    } else {
+        $("#password-check").removeClass("glyphicon-ok");
+        $("#password-check").addClass("glyphicon-remove");
+    }
+}
+{% endhighlight %}
+
+Masalah dengan cara ini ialah apabila kita hantar condition melalui parameter, kita akan invoke function validatePassword() secara automatik. Untuk tidak invoke function tersebut, kita boleh menggunakan closure:
+
+{% highlight javascript %}
+function() {
+    return $("#password-input").val().length >= 6;
+}
+
+function validatePassword(condition) {
+    return function() {
+        var ok = condition();
+        
+        if (ok) {
+            $("#password-check").removeClass("glyphicon-remove");
+            $("#password-check").addClass("glyphicon-ok");
+        } else {
+            $("#password-check").removeClass("glyphicon-ok");
+            $("#password-check").addClass("glyphicon-remove");
+        }
+    };
+}
+{% endhighlight %}
+
+Sekarang untuk menyelesaikan masalah code yang berulang, kita boleh abstract-kan function menggunakan keyword `this`, seperti berikut:
 
 {% highlight javascript %}
 function toggleIcon(condition) {
