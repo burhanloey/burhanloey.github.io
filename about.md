@@ -13,5 +13,5 @@ Java, JavaFX, OpenCV, Digital Image Processing, Wordpress, HTML5, CSS3, JavaScri
 Prolog, Natural Language Processing, Machine Learning, Android
 
 **New objectives:**  
-C++, Rust, Scala, GWT, Fine Art, Piano
+C++, Rust, Scala, Kotlin, TypeScript, Fine Art, Piano
 
