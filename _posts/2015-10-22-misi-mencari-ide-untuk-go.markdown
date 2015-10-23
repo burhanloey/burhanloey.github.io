@@ -25,6 +25,6 @@ mklink /J $GOPATH/src/appengine_internal c:\go_appengine\goroot\src\appengine_in
 
 [mklink](https://technet.microsoft.com/en-us/library/cc753194.aspx) ialah command dalam Windows untuk membuat symlink. Kalau anda menggunakan operating system yang lain akan berbeza.
 
-Walaupun agak leceh, saya tetap berpuas hati.
+Walaupun semua steps di atas agak leceh, saya tetap berpuas hati.
 
 Alternatif kepada semua cara di atas adalah dengan menggunakan package `appengine` yang baru iaitu `google.golang.org/appengine`. Tetapi dengan menggunakan package tersebut, saya tidak dapat code auto-completion jika menggunakan package yang berada di dalamnya seperti `google.golang.org/appengine/user` dan `google.golang.org/appengine/log`.
