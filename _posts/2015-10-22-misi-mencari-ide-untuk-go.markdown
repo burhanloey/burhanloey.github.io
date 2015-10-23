@@ -10,16 +10,16 @@ Untuk menggunakan Atom untuk Go, saya menambah package [go-plus](https://atom.io
 
 Sebelum ini saya menggunakan [LiteIDE](https://github.com/visualfc/liteide). LiteIDE juga bagus, tetapi disebabkan saya menggunakan cloud hosting Google App Engine, ada beberapa package yang IDE tersebut 'tak nampak'. Jadi, package `appengine` dan yang berkaitan tidak dapat support daripada code auto-completion.
 
-Untuk membuatkan Atom boleh nampak package `appengine`, saya perlu set library path untuk `gocode` dengan cara:
+Untuk membuatkan Atom boleh nampak package `appengine`, saya perlu set library path untuk `gocode` dengan cara:  
 ```
 gocode set lib-path c:\go_appengine\goroot\pkg\windows_amd64_appengine
 ```
 
 Sekarang barulah ada code auto-completion untuk package `appengine`.
 
-Satu lagi masalah ialah apabila save file program Go, akan keluar error yang menyatakan `src/appengine` tidak berada dalam `$GOPATH` dan `$GOROOT`. Untuk menyelesaikan masalah ini, saya membuat symlink:
+Satu lagi masalah ialah apabila save file program Go, akan keluar error yang menyatakan `src/appengine` tidak berada dalam `$GOPATH` dan `$GOROOT`. Untuk menyelesaikan masalah ini, saya membuat symlink:  
 ```
-mklink /J $GOPATH/src/appengine c:\go_appengine\goroot\src\appengine
+mklink /J $GOPATH/src/appengine c:\go_appengine\goroot\src\appengine  
 mklink /J $GOPATH/src/appengine_internal c:\go_appengine\goroot\src\appengine_internal
 ```
 
