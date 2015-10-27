@@ -4,6 +4,13 @@ title: "Misi Mencari IDE Untuk Go"
 date: 2015-10-22 16:42:00
 categories: go
 ---
+**UPDATE**: Selepas beberapa hari menggunakan Atom, saya jumpa satu bug. Kalau saya ada masa untuk reproduce bug tersebut, saya akan submit issue. Jadi, untuk mengelak daripada bug tersebut, saya kembali menggunakan LiteIDE dan mendapati IDE tersebut sudah boleh 'nampak' package `appengine` disebabkan langkah-langkah yang saya lakukan di bawah. Yay!
+
+Pada masa akan datang, mungkin saya akan cuba Eclipse pulak.
+
+---
+<br />
+<br />
 Saya memilih Go sebab saya perlukan programming language yang strict. Walaupun Go masih baru, Go menepati citarasa saya, antaranya static-typing. Kelebihan static-typing language adalah supaya dapat manfaat daripada IDE, seperti code auto-completion. Disebabkan Go masih baru, support daripada IDE tidaklah setanding dengan Java. Cari punya cari, akhirnya saya jumpa text editor yang boleh menjadi IDE untuk Go, iaitu [Atom](https://atom.io/).
 
 Untuk menggunakan Atom untuk Go, saya menambah package [go-plus](https://atom.io/packages/go-plus). Selepas selesai install package tersebut, saya download functionality yang diperlukan seperti `gocode`, `gofmt`, `goimports`, `go vet`, `golint`, `go build` dan `go test`.
