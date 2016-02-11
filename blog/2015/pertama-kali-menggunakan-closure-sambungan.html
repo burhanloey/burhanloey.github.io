@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Pertama Kali Menggunakan &apos;Closure&apos;(sambungan...)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="../../favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+   
+	
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../">burhanloey's blog</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../feed.xml">Subscribe</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	
+	<div class="col-md-8 col-md-offset-2">	
+
+		<div class="page-header">
+			<h1>Pertama Kali Menggunakan &apos;Closure&apos;(sambungan...)</h1>
+		</div>
+
+		<p><em>19 October 2015</em></p>
+
+		<p><p>Sebelum ini saya ada tunjuk bagaimana kita boleh menggunakan closure untuk menggabungkan satu function dengan function yang lain. Di bahagian paling bawah post tersebut, saya ada meminta pembaca untuk selesaikan code yang masih ada bahagian berulang. Jika anda belum mencuba dan ingin mencuba boleh lihat di <a href="/blog/2015/pertama-kali-menggunakan-closure.html">post ini</a>. Jika tak mahu, boleh teruskan membaca untuk lihat cara saya menyelesaikannya.</p><p>Jadi, kenapa kena guna closure? Saje, supaya code nampak lebih elegant. Kalau boleh semua function saya nak guna closure.</p><p><img src="/images/all-closures.png" alt="Write all the functions with closure!!!""/></p><p>Baiklah. Code sebelum ini masih ada bahagian yang berulang, iaitu:</p>
+<pre class="prettyprint">
+<code>
+// Check password length. Toggle icon accordingly. Password must be at least 
+// 6 characters. 
+function validatePassword() {
+    if ($("#password-input").val().length >= 6) {
+        $("#password-check").removeClass("glyphicon-remove");
+        $("#password-check").addClass("glyphicon-ok");
+    } else {
+        $("#password-check").removeClass("glyphicon-ok");
+        $("#password-check").addClass("glyphicon-remove");
+    }
+}
+
+// Check if password verification is the same with password. Toggle icon
+// accordingly.
+function verifyPassword() {
+    if ($("#verify-password-input").val() === $("#password-input").val()) {
+        $("#verify-password-check").removeClass("glyphicon-remove");
+        $("#verify-password-check").addClass("glyphicon-ok");
+    } else {
+        $("#verify-password-check").removeClass("glyphicon-ok");
+        $("#verify-password-check").addClass("glyphicon-remove");
+    }
+}
+</code>
+</pre><p>Tetapi masalahnya condition untuk if else antara kedua-dua function tersebut adalah berlainan.</p><p>Dalam functional programming, semua benda kita boleh jadikan function, dan kita juga boleh passing function melalui parameter. Jadi, secara teorinya kita akan jadikan condition untuk if else tersebut sebagai function, kemudian kita akan hantar function tersebut melalui parameter untuk closure. Saya akan tunjukkan perlahan-lahan menggunakan salah satu function tersebut.</p><p>Function yang asal adalah seperti ini:</p>
+<pre class="prettyprint">
+<code>
+function validatePassword() {
+    if ($("#password-input").val().length >= 6) {
+        $("#password-check").removeClass("glyphicon-remove");
+        $("#password-check").addClass("glyphicon-ok");
+    } else {
+        $("#password-check").removeClass("glyphicon-ok");
+        $("#password-check").addClass("glyphicon-remove");
+    }
+}
+</code>
+</pre><p>Sekarang kita asingkan condition tersebut ke dalam satu variable:</p>
+<pre class="prettyprint">
+<code>
+function validatePassword() {
+    var ok = $("#password-input").val().length >= 6;
+
+    if (ok) {
+        $("#password-check").removeClass("glyphicon-remove");
+        $("#password-check").addClass("glyphicon-ok");
+    } else {
+        $("#password-check").removeClass("glyphicon-ok");
+        $("#password-check").addClass("glyphicon-remove");
+    }
+}
+</code>
+</pre><p>Dan untuk menjadikannya sebagai function, kita boleh menggunakan singleton yang akan self-invoke:</p>
+<pre class="prettyprint">
+<code>
+function validatePassword() {
+    var ok = (function() { return $("#password-input").val().length >= 6; })();
+
+    if (ok) {
+        $("#password-check").removeClass("glyphicon-remove");
+        $("#password-check").addClass("glyphicon-ok");
+    } else {
+        $("#password-check").removeClass("glyphicon-ok");
+        $("#password-check").addClass("glyphicon-remove");
+    }
+}
+</code>
+</pre><p>Akhirnya, kita sudah menjadikan condition tersebut sebagai sebuah function, dan kita boleh asingkan condition tersebut di luar, seperti berikut:</p>
+<pre class="prettyprint">
+<code>
+function() {
+    return $("#password-input").val().length >= 6;
+}
+
+function validatePassword(condition) {
+    var ok = condition();
+
+    if (ok) {
+        $("#password-check").removeClass("glyphicon-remove");
+        $("#password-check").addClass("glyphicon-ok");
+    } else {
+        $("#password-check").removeClass("glyphicon-ok");
+        $("#password-check").addClass("glyphicon-remove");
+    }
+}
+</code>
+</pre><p>Masalah dengan cara ini ialah apabila kita hantar condition melalui parameter, kita akan invoke function validatePassword() secara automatik. Untuk tidak invoke function tersebut, kita boleh menggunakan closure:</p>
+<pre class="prettyprint">
+<code>
+function() {
+    return $("#password-input").val().length >= 6;
+}
+
+function validatePassword(condition) {
+    return function() {
+        var ok = condition();
+        
+        if (ok) {
+            $("#password-check").removeClass("glyphicon-remove");
+            $("#password-check").addClass("glyphicon-ok");
+        } else {
+            $("#password-check").removeClass("glyphicon-ok");
+            $("#password-check").addClass("glyphicon-remove");
+        }
+    };
+}
+</code>
+</pre><p>Sekarang untuk menyelesaikan masalah code yang berulang, kita boleh abstract-kan function menggunakan keyword <code>this</code>, seperti berikut:</p>
+<pre class="prettyprint">
+<code>
+function toggleIcon(condition) {
+    return function() {
+        var ok = condition();
+        var icon = $(this);
+        
+        if (ok) {
+            icon.removeClass("glyphicon-remove");
+            icon.addClass("glyphicon-ok");
+        } else {
+            icon.removeClass("glyphicon-ok");
+            icon.addClass("glyphicon-remove");
+        }
+    };
+}
+</code>
+</pre><p>Kalau mahu lebih ringkas, boleh tulis seperti ini:</p>
+<pre class="prettyprint">
+<code>
+function toggleIcon(ok) {
+    return function() {
+        var icon = $(this);
+        
+        if (ok()) {
+            icon.removeClass("glyphicon-remove");
+            icon.addClass("glyphicon-ok");
+        } else {
+            icon.removeClass("glyphicon-ok");
+            icon.addClass("glyphicon-remove");
+        }
+    };
+}
+</code>
+</pre><p>Note: Icon boleh di-refer menggunakan <code>$(this)</code>, dan bukannya seperti sebelum ini di mana kita menggunakan <code>$(this).parent().next()</code> kerana function tersebut adalah callback kepada event untuk icon itu sendiri. Kalau nak tukar scope, boleh guna <code>bind()</code>, tapi itu dah lari dari topik.</p><p>Sekarang kita sudah ada closure untuk handle toggle icon.</p><p>Selepas refactor, akhir sekali code kita akan jadi seperti ini:</p>
+<pre class="prettyprint">
+<code>
+// Condition that states that password input must be minimum of 6 characters.
+function validate() {
+    return $("#password-input").val().length >= 6;
+}
+
+// Condition that states that password input must be the same as verify password
+// input.
+function verify() {
+    return $("#verify-password-input").val() === $("#password-input").val();
+}
+
+// Toggle icon according to condition. If true, shows ok. If false, shows cross.
+function toggleIcon(ok) {
+    return function() {
+        var icon = $(this);
+        
+        if (ok()) {
+            icon.removeClass("glyphicon-remove");
+            icon.addClass("glyphicon-ok");
+        } else {
+            icon.removeClass("glyphicon-ok");
+            icon.addClass("glyphicon-remove");
+        }
+    };
+}
+
+// Show icon if the input is not null.
+function showIcon(duration, callback) {
+    return function() {
+        var input = $(this);
+        var icon = $(this).parent().next();
+        
+        if (input.val().length > 0) {
+            icon.show(duration, callback);
+        } else {
+            icon.hide(duration);
+        }
+    };
+}
+
+// Set-up events.
+$("#password-input").keyup(showIcon(0, toggleIcon(validate)));
+$("#verify-password-input").keyup(showIcon(0, toggleIcon(verify)));
+</code>
+</pre><p>Bandingkan dengan code sebelum ini, yang mana lebih anda suka?</p><p>Kesimpulannya, closure is awesome. Seperti yang tertulis di Mozilla, kita boleh menggunakan closure sebagai 'function factory'. Anda boleh baca dengan lebih lanjut di contoh makeAdder di <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures#Closure">sini</a>.</p></p>
+
+		<hr />
+
+	</div>
+	
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container text-right">
+        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.4.0</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    
+  </body>
+</html>

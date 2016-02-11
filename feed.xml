@@ -1,30 +1,342 @@
----
-layout: null
----
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ site.title | xml_escape }}</title>
-    <description>{{ site.description | xml_escape }}</description>
-    <link>{{ site.url }}{{ site.baseurl }}/</link>
-    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml" />
-    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
-    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
-    <generator>Jekyll v{{ jekyll.version }}</generator>
-    {% for post in site.posts limit:10 %}
-      <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
-        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
-        {% for tag in post.tags %}
-        <category>{{ tag | xml_escape }}</category>
-        {% endfor %}
-        {% for cat in post.categories %}
-        <category>{{ cat | xml_escape }}</category>
-        {% endfor %}
-      </item>
-    {% endfor %}
-  </channel>
+    <title>burhanloey's blog</title>
+    <link>http://www.burhanloey.com</link>
+    <atom:link href="http://www.burhanloey.com/feed.xml" rel="self" type="application/rss+xml" />
+    <description>JVM enthusiast, functional programming fanboy, and computer vision hobbyist</description>
+    <language>en-gb</language>
+    <pubDate>Thu, 11 Feb 2016 13:32:23 +0800</pubDate>
+    <lastBuildDate>Thu, 11 Feb 2016 13:32:23 +0800</lastBuildDate>
+
+    <item>
+      <title>Etika Web Scraping</title>
+      <link>http://www.burhanloey.com/blog/2016/etika-web-scraping.html</link>
+      <pubDate>Wed, 10 Feb 2016 00:00:00 +0800</pubDate>
+      <guid isPermaLink="false">blog/2016/etika-web-scraping.html</guid>
+      	<description>
+	&lt;p&gt;Baru-baru ini saya ada praktis concurrency dengan membuat web scraping menggunakan C++11. Sebelum ini saya takut untuk programming menggunakan C++ sebab terpaksa membuat memory management secara manual. Selepas membaca segala best practice untuk C++, barulah nampak yang C++11/C++14 boleh tahan elegant-nya. Yang nampak kurang sedap bila ada orang mengaku pandai C++ tapi programming macam C.&lt;/p&gt;&lt;p&gt;Berbalik ke cerita web scraping, C++ memang elegant, sehinggalah kena guna library C. Kalau tak jumpa wrapper C++ untuk library tersebut, mulut memang akan sumpah seranah waktu programming. Saya menggunakan library &apos;libcurl&apos; untuk mendapatkan HTML daripada website, &apos;libxml2&apos; untuk parse code HTML, dan library Boost untuk membuat concurrency.&lt;/p&gt;&lt;p&gt;&apos;libcurl&apos; dan &apos;libxml2&apos; memang sudah ada wrapper C++, tetapi untuk educational purpose, saya cuba untuk wrap sendiri library tersebut menggunakan kaedah Resource Acquisition Is Initialization (RAII). Kaedah RAII memang selalu digunakan dalam C++ untuk memudahkan memory management.&lt;/p&gt;&lt;p&gt;Semasa cubaan awal, segalanya berjalan lancar. Boleh dapatkan code HTML daripada website, dan boleh parse HTML untuk dapatkan data yang diingini. Cabaran bermula apabila saya mula membuat concurrency. Apabila run sahaja, terus dapat segfault (segmentation fault). Kalau yang dah biasa, memang akan tahu yang segfault mesti punca daripada masalah memory.&lt;/p&gt;&lt;p&gt;Jadi, macam-macamlah yang saya ubahsuai code untuk menyelesaikan masalah. Tukar daripada kaedah menggunakan thread seperti biasa, kepada menggunakan future/promise, dan akhir sekali kepada menggunakan barrier. Selepas meletakkan barrier, saya perasan ada data yang saya dapat fetch sampai satu tahap barulah akan segfault seperti biasa.&lt;/p&gt;&lt;p&gt;Kemudian saya pun tengoklah macam mana rupa code HTML yang saya fetch tersebut. Barulah perasan yang saya dah kena block daripada website tersebut. Seperti semua sedia maklum, program C++ sememangnya laju. Jadi web scraping dengan concurrency akan jadi amat laju dan berpotensi membuatkan pemilik website tersebut berasa bimbang, lantas akan menghalang kita daripada mengakses website mereka.&lt;/p&gt;&lt;p&gt;Kesimpulannya, moral of the story untuk kisah ini ialah kita mestilah beretika semasa membuat web scraping. Seboleh-bolehnya jangan memaksa sangat website tersebut untuk handle request daripada program kita. Tak perlu laju-laju sangat pun takpe, janji dapat data yang dihajati. Kalau nak lagi elok, minta izin daripada pemilik website tersebut untuk membuat web scraping, lagi bagus.&lt;/p&gt;
+	</description>
+    </item>
+    <item>
+      <title>Misi Mencari IDE Untuk Go</title>
+      <link>http://www.burhanloey.com/blog/2015/misi-mencari-ide-untuk-go.html</link>
+      <pubDate>Thu, 22 Oct 2015 00:00:00 +0800</pubDate>
+      <guid isPermaLink="false">blog/2015/misi-mencari-ide-untuk-go.html</guid>
+      	<description>
+	&lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;: Selepas beberapa hari menggunakan Atom, saya jumpa satu bug. Kalau saya ada masa untuk reproduce bug tersebut, saya akan submit issue. Jadi, untuk mengelak daripada bug tersebut, saya kembali menggunakan LiteIDE dan mendapati IDE tersebut sudah boleh &apos;nampak&apos; package &lt;code&gt;appengine&lt;/code&gt; disebabkan langkah-langkah yang saya lakukan di bawah. Yay!&lt;/p&gt;&lt;p&gt;Pada masa akan datang, mungkin saya akan cuba Eclipse pulak.&lt;/p&gt;
+&lt;hr/&gt;&lt;p&gt;Saya memilih Go sebab saya perlukan programming language yang strict. Walaupun Go masih baru, Go menepati citarasa saya, antaranya static-typing. Kelebihan static-typing language adalah supaya dapat manfaat daripada IDE, seperti code auto-completion. Disebabkan Go masih baru, support daripada IDE tidaklah setanding dengan Java. Cari punya cari, akhirnya saya jumpa text editor yang boleh menjadi IDE untuk Go, iaitu &lt;a href=&quot;https://atom.io/&quot;&gt;Atom&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Untuk menggunakan Atom untuk Go, saya menambah package &lt;a href=&quot;https://atom.io/packages/go-plus&quot;&gt;go-plus&lt;/a&gt;. Selepas selesai install package tersebut, saya download functionality yang diperlukan seperti &lt;code&gt;gocode&lt;/code&gt;, &lt;code&gt;gofmt&lt;/code&gt;, &lt;code&gt;goimports&lt;/code&gt;, &lt;code&gt;go vet&lt;/code&gt;, &lt;code&gt;golint&lt;/code&gt;, &lt;code&gt;go build&lt;/code&gt; dan &lt;code&gt;go test&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;Sebelum ini saya menggunakan &lt;a href=&quot;https://github.com/visualfc/liteide&quot;&gt;LiteIDE&lt;/a&gt;. LiteIDE juga bagus, tetapi disebabkan saya menggunakan cloud hosting Google App Engine, ada beberapa package yang IDE tersebut &apos;tak nampak&apos;. Jadi, package &lt;code&gt;appengine&lt;/code&gt; dan yang berkaitan tidak dapat support daripada code auto-completion.&lt;/p&gt;&lt;p&gt;Untuk membuatkan Atom boleh nampak package &lt;code&gt;appengine&lt;/code&gt;, saya perlu set library path untuk &lt;code&gt;gocode&lt;/code&gt; dengan cara:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gocode set lib-path c:\go_appengine\goroot\pkg\windows_amd64_appengine
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Sekarang barulah ada code auto-completion untuk package &lt;code&gt;appengine&lt;/code&gt;.&lt;/p&gt;&lt;p&gt;Satu lagi masalah ialah apabila save file program Go, akan keluar error yang menyatakan &lt;code&gt;src/appengine&lt;/code&gt; tidak berada dalam &lt;code&gt;$GOPATH&lt;/code&gt; dan &lt;code&gt;$GOROOT&lt;/code&gt;. Untuk menyelesaikan masalah ini, saya membuat symlink:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mklink /J $GOPATH/src/appengine c:\go_appengine\goroot\src\appengine
+mklink /J $GOPATH/src/appengine_internal c:\go_appengine\goroot\src\appengine_internal
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;a href=&quot;https://technet.microsoft.com/en-us/library/cc753194.aspx&quot;&gt;mklink&lt;/a&gt; ialah command dalam Windows untuk membuat symlink. Kalau anda menggunakan operating system yang lain akan berbeza.&lt;/p&gt;&lt;p&gt;Walaupun semua steps di atas agak leceh, saya tetap berpuas hati.&lt;/p&gt;&lt;p&gt;Alternatif kepada semua cara di atas adalah dengan menggunakan package &lt;code&gt;appengine&lt;/code&gt; yang baru iaitu &lt;code&gt;google.golang.org/appengine&lt;/code&gt;. Tetapi dengan menggunakan package tersebut, saya tidak dapat code auto-completion jika menggunakan package yang berada di dalamnya seperti &lt;code&gt;google.golang.org/appengine/user&lt;/code&gt; dan &lt;code&gt;google.golang.org/appengine/log&lt;/code&gt;.&lt;/p&gt;
+	</description>
+    </item>
+    <item>
+      <title>Pertama Kali Menggunakan &apos;Closure&apos;(sambungan...)</title>
+      <link>http://www.burhanloey.com/blog/2015/pertama-kali-menggunakan-closure-sambungan.html</link>
+      <pubDate>Mon, 19 Oct 2015 00:00:00 +0800</pubDate>
+      <guid isPermaLink="false">blog/2015/pertama-kali-menggunakan-closure-sambungan.html</guid>
+      	<description>
+	&lt;p&gt;Sebelum ini saya ada tunjuk bagaimana kita boleh menggunakan closure untuk menggabungkan satu function dengan function yang lain. Di bahagian paling bawah post tersebut, saya ada meminta pembaca untuk selesaikan code yang masih ada bahagian berulang. Jika anda belum mencuba dan ingin mencuba boleh lihat di &lt;a href=&quot;/blog/2015/pertama-kali-menggunakan-closure.html&quot;&gt;post ini&lt;/a&gt;. Jika tak mahu, boleh teruskan membaca untuk lihat cara saya menyelesaikannya.&lt;/p&gt;&lt;p&gt;Jadi, kenapa kena guna closure? Saje, supaya code nampak lebih elegant. Kalau boleh semua function saya nak guna closure.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/images/all-closures.png&quot; alt=&quot;Write all the functions with closure!!!&quot;&quot;/&gt;&lt;/p&gt;&lt;p&gt;Baiklah. Code sebelum ini masih ada bahagian yang berulang, iaitu:&lt;/p&gt;
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;
+// Check password length. Toggle icon accordingly. Password must be at least 
+// 6 characters. 
+function validatePassword() {
+    if ($(&quot;#password-input&quot;).val().length &gt;= 6) {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-remove&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-ok&quot;);
+    } else {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-ok&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-remove&quot;);
+    }
+}
+
+// Check if password verification is the same with password. Toggle icon
+// accordingly.
+function verifyPassword() {
+    if ($(&quot;#verify-password-input&quot;).val() === $(&quot;#password-input&quot;).val()) {
+        $(&quot;#verify-password-check&quot;).removeClass(&quot;glyphicon-remove&quot;);
+        $(&quot;#verify-password-check&quot;).addClass(&quot;glyphicon-ok&quot;);
+    } else {
+        $(&quot;#verify-password-check&quot;).removeClass(&quot;glyphicon-ok&quot;);
+        $(&quot;#verify-password-check&quot;).addClass(&quot;glyphicon-remove&quot;);
+    }
+}
+&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Tetapi masalahnya condition untuk if else antara kedua-dua function tersebut adalah berlainan.&lt;/p&gt;&lt;p&gt;Dalam functional programming, semua benda kita boleh jadikan function, dan kita juga boleh passing function melalui parameter. Jadi, secara teorinya kita akan jadikan condition untuk if else tersebut sebagai function, kemudian kita akan hantar function tersebut melalui parameter untuk closure. Saya akan tunjukkan perlahan-lahan menggunakan salah satu function tersebut.&lt;/p&gt;&lt;p&gt;Function yang asal adalah seperti ini:&lt;/p&gt;
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;
+function validatePassword() {
+    if ($(&quot;#password-input&quot;).val().length &gt;= 6) {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-remove&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-ok&quot;);
+    } else {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-ok&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-remove&quot;);
+    }
+}
+&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Sekarang kita asingkan condition tersebut ke dalam satu variable:&lt;/p&gt;
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;
+function validatePassword() {
+    var ok = $(&quot;#password-input&quot;).val().length &gt;= 6;
+
+    if (ok) {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-remove&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-ok&quot;);
+    } else {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-ok&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-remove&quot;);
+    }
+}
+&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Dan untuk menjadikannya sebagai function, kita boleh menggunakan singleton yang akan self-invoke:&lt;/p&gt;
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;
+function validatePassword() {
+    var ok = (function() { return $(&quot;#password-input&quot;).val().length &gt;= 6; })();
+
+    if (ok) {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-remove&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-ok&quot;);
+    } else {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-ok&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-remove&quot;);
+    }
+}
+&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Akhirnya, kita sudah menjadikan condition tersebut sebagai sebuah function, dan kita boleh asingkan condition tersebut di luar, seperti berikut:&lt;/p&gt;
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;
+function() {
+    return $(&quot;#password-input&quot;).val().length &gt;= 6;
+}
+
+function validatePassword(condition) {
+    var ok = condition();
+
+    if (ok) {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-remove&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-ok&quot;);
+    } else {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-ok&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-remove&quot;);
+    }
+}
+&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Masalah dengan cara ini ialah apabila kita hantar condition melalui parameter, kita akan invoke function validatePassword() secara automatik. Untuk tidak invoke function tersebut, kita boleh menggunakan closure:&lt;/p&gt;
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;
+function() {
+    return $(&quot;#password-input&quot;).val().length &gt;= 6;
+}
+
+function validatePassword(condition) {
+    return function() {
+        var ok = condition();
+        
+        if (ok) {
+            $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-remove&quot;);
+            $(&quot;#password-check&quot;).addClass(&quot;glyphicon-ok&quot;);
+        } else {
+            $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-ok&quot;);
+            $(&quot;#password-check&quot;).addClass(&quot;glyphicon-remove&quot;);
+        }
+    };
+}
+&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Sekarang untuk menyelesaikan masalah code yang berulang, kita boleh abstract-kan function menggunakan keyword &lt;code&gt;this&lt;/code&gt;, seperti berikut:&lt;/p&gt;
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;
+function toggleIcon(condition) {
+    return function() {
+        var ok = condition();
+        var icon = $(this);
+        
+        if (ok) {
+            icon.removeClass(&quot;glyphicon-remove&quot;);
+            icon.addClass(&quot;glyphicon-ok&quot;);
+        } else {
+            icon.removeClass(&quot;glyphicon-ok&quot;);
+            icon.addClass(&quot;glyphicon-remove&quot;);
+        }
+    };
+}
+&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Kalau mahu lebih ringkas, boleh tulis seperti ini:&lt;/p&gt;
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;
+function toggleIcon(ok) {
+    return function() {
+        var icon = $(this);
+        
+        if (ok()) {
+            icon.removeClass(&quot;glyphicon-remove&quot;);
+            icon.addClass(&quot;glyphicon-ok&quot;);
+        } else {
+            icon.removeClass(&quot;glyphicon-ok&quot;);
+            icon.addClass(&quot;glyphicon-remove&quot;);
+        }
+    };
+}
+&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Note: Icon boleh di-refer menggunakan &lt;code&gt;$(this)&lt;/code&gt;, dan bukannya seperti sebelum ini di mana kita menggunakan &lt;code&gt;$(this).parent().next()&lt;/code&gt; kerana function tersebut adalah callback kepada event untuk icon itu sendiri. Kalau nak tukar scope, boleh guna &lt;code&gt;bind()&lt;/code&gt;, tapi itu dah lari dari topik.&lt;/p&gt;&lt;p&gt;Sekarang kita sudah ada closure untuk handle toggle icon.&lt;/p&gt;&lt;p&gt;Selepas refactor, akhir sekali code kita akan jadi seperti ini:&lt;/p&gt;
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;
+// Condition that states that password input must be minimum of 6 characters.
+function validate() {
+    return $(&quot;#password-input&quot;).val().length &gt;= 6;
+}
+
+// Condition that states that password input must be the same as verify password
+// input.
+function verify() {
+    return $(&quot;#verify-password-input&quot;).val() === $(&quot;#password-input&quot;).val();
+}
+
+// Toggle icon according to condition. If true, shows ok. If false, shows cross.
+function toggleIcon(ok) {
+    return function() {
+        var icon = $(this);
+        
+        if (ok()) {
+            icon.removeClass(&quot;glyphicon-remove&quot;);
+            icon.addClass(&quot;glyphicon-ok&quot;);
+        } else {
+            icon.removeClass(&quot;glyphicon-ok&quot;);
+            icon.addClass(&quot;glyphicon-remove&quot;);
+        }
+    };
+}
+
+// Show icon if the input is not null.
+function showIcon(duration, callback) {
+    return function() {
+        var input = $(this);
+        var icon = $(this).parent().next();
+        
+        if (input.val().length &gt; 0) {
+            icon.show(duration, callback);
+        } else {
+            icon.hide(duration);
+        }
+    };
+}
+
+// Set-up events.
+$(&quot;#password-input&quot;).keyup(showIcon(0, toggleIcon(validate)));
+$(&quot;#verify-password-input&quot;).keyup(showIcon(0, toggleIcon(verify)));
+&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Bandingkan dengan code sebelum ini, yang mana lebih anda suka?&lt;/p&gt;&lt;p&gt;Kesimpulannya, closure is awesome. Seperti yang tertulis di Mozilla, kita boleh menggunakan closure sebagai &apos;function factory&apos;. Anda boleh baca dengan lebih lanjut di contoh makeAdder di &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures#Closure&quot;&gt;sini&lt;/a&gt;.&lt;/p&gt;
+	</description>
+    </item>
+    <item>
+      <title>Pertama Kali Menggunakan &apos;Closure&apos;</title>
+      <link>http://www.burhanloey.com/blog/2015/pertama-kali-menggunakan-closure.html</link>
+      <pubDate>Sun, 18 Oct 2015 00:00:00 +0800</pubDate>
+      <guid isPermaLink="false">blog/2015/pertama-kali-menggunakan-closure.html</guid>
+      	<description>
+	&lt;p&gt;Saya masih baru dalam web development dan functional programming. Semasa belajar functional programming dengan Scala, ada beberapa konsep dan teknik yang rasa-rasa macam faham, rasa-rasa macam tak, rasa-rasa tak pasti, antaranya lambda expression, map reduce, closure, dan monad.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/images/i-dont-get-it.png&quot; alt=&quot;I don&apos;t get it&quot;&quot;/&gt;&lt;/p&gt;&lt;p&gt;Semuanya terjawab sedikit demi sedikit apabila saya mula menggunakan JavaScript. Dalam tutorial Scala, kita terus menggunakan simbol-simbol seperti simbol lambda, jadi kita tak beberapa nak nampak apa yang berlaku under the hood semasa menggunakan simbol lambda. Berlainan dengan JavaScript, di mana kita perlu menulis anonymous function untuk membuat map reduce tanpa menggunakan simbol lambda. Lambda expression untuk JavaScript akan ada support dalam ECMAScript 6 nanti.&lt;/p&gt;&lt;p&gt;Berbalik pada tajuk asal, antara feature dalam functional programming ialah closure. Kalau tengok pada mana-mana tutorial, contoh yang mereka beri adalah untuk menunjukkan bagaimana return function boleh akses variable dalam function yang lain. Jadi, saya pun tertanya-tanya, &quot;Apa yang special-nya?&quot;, saya boleh sahaja letak variable tersebut sebagai global dan akses dari mana-mana sahaja, betul tak? Pendapat saya itu kekal sehinggalah saya cuba membuat web development, barulah saya nampak betapa awesome-nya konsep closure ini.&lt;/p&gt;&lt;p&gt;Sebelum itu, saya nak tunjuk masalah apa yang saya nak selesaikan, iaitu sign up form. Jangan gelak, saya masih baru.&lt;/p&gt;&lt;p&gt;Sign up form yang saya nak buat simple sahaja. Ada tiga textfield untuk username, password, dan verify password. Untuk kedua-dua textfield password, saya nak display icon untuk menunjukkan sama ada input tersebut dibenarkan ataupun tidak sebaik sahaja user tulis sesuatu. Untuk textfield password, input yang saya benarkan hanyalah 6 character minimum. Untuk textfield verify password pula, input yang saya benarkan ialah input yang sama dengan password(obviously).&lt;/p&gt;&lt;p&gt;Saya menggunakan jQuery, jadi pada mulanya saya tulis code seperti ini:&lt;/p&gt;
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;
+// Check password length. Toggle icon accordingly. Password must be at least 
+// 6 characters. 
+function validatePassword() {
+    if ($(&quot;#password-input&quot;).val().length &gt;= 6) {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-remove&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-ok&quot;);
+    } else {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-ok&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-remove&quot;);
+    }
+}
+
+// Check if password verification is the same with password. Toggle icon
+// accordingly.
+function verifyPassword() {
+    if ($(&quot;#verify-password-input&quot;).val() === $(&quot;#password-input&quot;).val()) {
+        $(&quot;#verify-password-check&quot;).removeClass(&quot;glyphicon-remove&quot;);
+        $(&quot;#verify-password-check&quot;).addClass(&quot;glyphicon-ok&quot;);
+    } else {
+        $(&quot;#verify-password-check&quot;).removeClass(&quot;glyphicon-ok&quot;);
+        $(&quot;#verify-password-check&quot;).addClass(&quot;glyphicon-remove&quot;);
+    }
+}
+
+// Show icon if the input is not null, and then validate.
+function showIconAndValidate() {
+    if ($(&quot;#password-input&quot;).val().length &gt; 0) {
+        $(&quot;#password-check&quot;).show(0, validatePassword);
+    } else {
+        $(&quot;#password-check&quot;).hide(0);
+    }
+}
+
+// Show icon if the input is not null, and then verify.
+function showIconAndVerify() {
+    if ($(&quot;#verify-password-input&quot;).val().length &gt; 0) {
+        $(&quot;#verify-password-check&quot;).show(0, verifyPassword);
+    } else {
+        $(&quot;#verify-password-check&quot;).hide(0);
+    }
+}
+
+// Set-up events.
+$(&quot;#password-input&quot;).keyup(showIconAndValidate);
+$(&quot;#verify-password-input&quot;).keyup(showIconAndVerify);
+&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Kalau sesiapa yang dah pro mungkin boleh nampak, ada bahagian yang tidak menggunakan konsep DRY(Don&apos;t-Repeat-Yourself). Sebelum membuat validation dan verification, saya check sama ada textfield ada input ataupun tidak. Kalau ada display, kalau tiada hide. Bahagian tersebut saya tulis dua kali, satu untuk textfield password, satu lagi untuk textfield verify password, jadi tak berapa bagus di situ.&lt;/p&gt;&lt;p&gt;Oleh itu, saya perlu membuat satu function untuk handle sama ada textfield ada input ataupun tidak. Tapi, tunggu dulu. Perhatikan selepas checking tersebut, saya ada membuat callback. Callback validatePassword() untuk password, callback verifyPassword() untuk verify password. Jadi, bagaimana kita nak asingkan callback tersebut? Ya, di sinilah saya menggunakan closure.&lt;/p&gt;&lt;p&gt;Code yang baru selepas refactor akan jadi seperti ini:&lt;/p&gt;
+&lt;pre class=&quot;prettyprint&quot;&gt;
+&lt;code&gt;
+// Check password length. Toggle icon accordingly. Password must be at least 
+// 6 characters. 
+function validatePassword() {
+    if ($(&quot;#password-input&quot;).val().length &gt;= 6) {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-remove&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-ok&quot;);
+    } else {
+        $(&quot;#password-check&quot;).removeClass(&quot;glyphicon-ok&quot;);
+        $(&quot;#password-check&quot;).addClass(&quot;glyphicon-remove&quot;);
+    }
+}
+
+// Check if password verification is the same with password. Toggle icon
+// accordingly.
+function verifyPassword() {
+    if ($(&quot;#verify-password-input&quot;).val() === $(&quot;#password-input&quot;).val()) {
+        $(&quot;#verify-password-check&quot;).removeClass(&quot;glyphicon-remove&quot;);
+        $(&quot;#verify-password-check&quot;).addClass(&quot;glyphicon-ok&quot;);
+    } else {
+        $(&quot;#verify-password-check&quot;).removeClass(&quot;glyphicon-ok&quot;);
+        $(&quot;#verify-password-check&quot;).addClass(&quot;glyphicon-remove&quot;);
+    }
+}
+
+// Show icon if the input is not null.
+function showIcon(callback) {
+    return function() {
+        var input = $(this);
+        var icon = $(this).parent().next();
+        
+        if (input.val().length &gt; 0) {
+            icon.show(0, callback);
+        } else {
+            icon.hide(0);
+        }
+    };
+}
+
+// Set-up events.
+$(&quot;#password-input&quot;).keyup(showIcon(validatePassword));
+$(&quot;#verify-password-input&quot;).keyup(showIcon(verifyPassword));
+&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Saya menggunakan JavaScript traversing, iaitu &lt;code&gt;$(this).parent().next()&lt;/code&gt; untuk pilih icon. Ini tidak ada kena mengena dengan closure. Baca seterusnya untuk penjelasan mengenai closure.&lt;/p&gt;&lt;p&gt;Dalam jQuery, kita boleh passing function sebagai callback. Dalam JavaScript, jika kita letak kurungan selepas function, secara automatik kita akan invoke function tersebut. Dalam masalah saya ini, saya letak function sebagai parameter untuk callback. Jadi kalau saya tidak membuat closure, apabila saya pass function sebagai argument untuk function showIcon(), secara automatik saya invoke showIcon(), tetapi saya tak mahu begitu. Saya mahu jQuery yang invoke showIcon() bergantung kepada event yang saya tetapkan. Jadi, dengan menggunakan closure, saya boleh pass function showIcon() yang dah &apos;combined&apos; dengan function yang lain.&lt;/p&gt;&lt;p&gt;Awesome kan?&lt;/p&gt;&lt;p&gt;P/S: Perhatikan function validatePassword() dan verifyPassword() ada bahagian yang berulang. Saya serahkan kepada pembaca untuk selesaikan masalah tersebut. :)&lt;/p&gt;
+	</description>
+    </item>
+
+  </channel> 
 </rss>
