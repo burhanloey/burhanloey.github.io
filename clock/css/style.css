@@ -1,3 +1,17 @@
+body {
+    text-align: center;
+}
+
 #walk {
     visibility: hidden;
+    font-size: 400%;
+    color: red;
+}
+
+#clock {
+    font-size: 350%;
+}
+
+#gotit {
+    font-size: 200%;
 }
