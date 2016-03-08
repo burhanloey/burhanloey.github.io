@@ -7,6 +7,12 @@ body {
   /* The html and body elements cannot have any padding or margin. */
 }
 
+p,
+ul {
+  font-size: 125%;
+  line-height: 175%;
+}
+
 /**
  * Images
  */

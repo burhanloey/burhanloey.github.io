@@ -1,49 +1,12 @@
-var alarm = new Audio("clock.mp3");
-alarm.loop = true;
-
-function pad(num) {
-    if (num < 10) {
-        return "0" + num;
-    }
-    return num.toString();
-}
-
-function isTimeToWalk(minutes, seconds) {
-    if (minutes === "00" && seconds === "00") {
-        return true;
-    }
-    return false;
-}
-
-function walk() {
-    alarm.play();
-
-    document.getElementById("walk").style.visibility = "visible";
-    document.getElementById("gotit").disabled = false;
-}
-
-function updateTime() {
-    var now = new Date();
-    var hours = pad(now.getHours())
-    var minutes = pad(now.getMinutes())
-    var seconds = pad(now.getSeconds())
-
-    document.getElementById("clock").innerHTML = hours + ":" + minutes + ":" + seconds;
-
-    if (isTimeToWalk(minutes, seconds)) {
-        walk();
-    }
-}
+function createAlarm() { var alarmSound = new Audio('../audio/alarm.mp3'); alarmSound.loop = true; return alarmSound; };
+var alarm = createAlarm();
+var walkText = document.getElementById('walk');
+var gotitButton = document.getElementById('gotit');
+var clock = document.getElementById('clock');
+function startAlarm() { alarm.play(); walkText.style.visibility = 'visible'; return gotitButton.disabled = false; };
+function stopAlarm() { alarm.pause(); walkText.style.visibility = 'hidden'; return gotitButton.disabled = true; };
+function padZero(x) { return x < 10 ? '0' + x : x; };
+function formatTime(hours, minutes, seconds) { return padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds); };
+function updateTime() { var now = new Date(); var hours = now.getHours(); var minutes = now.getMinutes(); var seconds = now.getSeconds(); var currentTime = formatTime(hours, minutes, seconds); clock.innerHTML = currentTime; return 0 === minutes && 0 === seconds ? startAlarm() : null; };
+updateTime();
 setInterval(updateTime, 1000);
-
-function stop() {
-    alarm.pause();
-    alarm.currentTime = 0;
-
-    document.getElementById("walk").style.visibility = "hidden";
-    document.getElementById("gotit").disabled = true;
-}
-
-window.onload = function() {
-    updateTime();
-}
