@@ -91,7 +91,7 @@ mklink /J $GOPATH/src/appengine_internal c:\go_appengine\goroot\src\appengine_in
 	  			<p>19 October 2015</p>
 	  			<p><p>Sebelum ini saya ada tunjuk bagaimana kita boleh menggunakan closure untuk menggabungkan satu function dengan function yang lain. Di bahagian paling bawah post tersebut, saya ada meminta pembaca untuk selesaikan code yang masih ada bahagian berulang. Jika anda belum mencuba dan ingin mencuba boleh lihat di <a href="/blog/2015/pertama-kali-menggunakan-closure.html">post ini</a>. Jika tak mahu, boleh teruskan membaca untuk lihat cara saya menyelesaikannya.</p>
 <p>Jadi, kenapa kena guna closure? Saje, supaya code nampak lebih elegant. Kalau boleh semua function saya nak guna closure.</p>
-<p><img src="/images/all-closures.png" alt="Write all the functions with closure!!!" /></p>
+<p><img src="/blog/images/all-closures.png" alt="Write all the functions with closure!!!" /></p>
 <p>Baiklah. Code sebelum ini masih ada bahagian yang berulang, iaitu:</p>
 <pre class="prettyprint">
 <code>
@@ -302,7 +302,7 @@ $("#verify-password-input").keyup(showIcon(0, toggleIcon(verify)));
 	  			<a href="blog/2015/pertama-kali-menggunakan-closure.html"><h1>Pertama Kali Menggunakan &apos;Closure&apos;</h1></a>
 	  			<p>18 October 2015</p>
 	  			<p><p>Saya masih baru dalam web development dan functional programming. Semasa belajar functional programming dengan Scala, ada beberapa konsep dan teknik yang rasa-rasa macam faham, rasa-rasa macam tak, rasa-rasa tak pasti, antaranya lambda expression, map reduce, closure, dan monad.</p>
-<p><img src="/images/i-dont-get-it.png" alt="I don't get it" /></p>
+<p><img src="/blog/images/i-dont-get-it.png" alt="I don't get it" /></p>
 <p>Semuanya terjawab sedikit demi sedikit apabila saya mula menggunakan JavaScript. Dalam tutorial Scala, kita terus menggunakan simbol-simbol seperti simbol lambda, jadi kita tak beberapa nak nampak apa yang berlaku under the hood semasa menggunakan simbol lambda. Berlainan dengan JavaScript, di mana kita perlu menulis anonymous function untuk membuat map reduce tanpa menggunakan simbol lambda. Lambda expression untuk JavaScript akan ada support dalam ECMAScript 6 nanti.</p>
 <p>Berbalik pada tajuk asal, antara feature dalam functional programming ialah closure. Kalau tengok pada mana-mana tutorial, contoh yang mereka beri adalah untuk menunjukkan bagaimana return function boleh akses variable dalam function yang lain. Jadi, saya pun tertanya-tanya, "Apa yang special-nya?", saya boleh sahaja letak variable tersebut sebagai global dan akses dari mana-mana sahaja, betul tak? Pendapat saya itu kekal sehinggalah saya cuba membuat web development, barulah saya nampak betapa awesome-nya konsep closure ini.</p>
 <p>Sebelum itu, saya nak tunjuk masalah apa yang saya nak selesaikan, iaitu sign up form. Jangan gelak, saya masih baru.</p>

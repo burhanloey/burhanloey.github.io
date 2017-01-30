@@ -6,8 +6,8 @@
     <atom:link href="http://www.burhanloey.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>JVM enthusiast, functional programming fanboy, and computer vision hobbyist</description>
     <language>en-gb</language>
-    <pubDate>Mon, 30 Jan 2017 12:25:55 +0800</pubDate>
-    <lastBuildDate>Mon, 30 Jan 2017 12:25:55 +0800</lastBuildDate>
+    <pubDate>Mon, 30 Jan 2017 21:26:54 +0800</pubDate>
+    <lastBuildDate>Mon, 30 Jan 2017 21:26:54 +0800</lastBuildDate>
 
     <item>
       <title>Etika Web Scraping</title>
@@ -57,7 +57,7 @@ mklink /J $GOPATH/src/appengine_internal c:\go_appengine\goroot\src\appengine_in
       	<description>
 	&lt;p&gt;Sebelum ini saya ada tunjuk bagaimana kita boleh menggunakan closure untuk menggabungkan satu function dengan function yang lain. Di bahagian paling bawah post tersebut, saya ada meminta pembaca untuk selesaikan code yang masih ada bahagian berulang. Jika anda belum mencuba dan ingin mencuba boleh lihat di &lt;a href=&quot;/blog/2015/pertama-kali-menggunakan-closure.html&quot;&gt;post ini&lt;/a&gt;. Jika tak mahu, boleh teruskan membaca untuk lihat cara saya menyelesaikannya.&lt;/p&gt;
 &lt;p&gt;Jadi, kenapa kena guna closure? Saje, supaya code nampak lebih elegant. Kalau boleh semua function saya nak guna closure.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/all-closures.png&quot; alt=&quot;Write all the functions with closure!!!&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/images/all-closures.png&quot; alt=&quot;Write all the functions with closure!!!&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Baiklah. Code sebelum ini masih ada bahagian yang berulang, iaitu:&lt;/p&gt;
 &lt;pre class=&quot;prettyprint&quot;&gt;
 &lt;code&gt;
@@ -274,7 +274,7 @@ $(&quot;#verify-password-input&quot;).keyup(showIcon(0, toggleIcon(verify)));
       <guid isPermaLink="false">blog/2015/pertama-kali-menggunakan-closure.html</guid>
       	<description>
 	&lt;p&gt;Saya masih baru dalam web development dan functional programming. Semasa belajar functional programming dengan Scala, ada beberapa konsep dan teknik yang rasa-rasa macam faham, rasa-rasa macam tak, rasa-rasa tak pasti, antaranya lambda expression, map reduce, closure, dan monad.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/images/i-dont-get-it.png&quot; alt=&quot;I don&apos;t get it&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/images/i-dont-get-it.png&quot; alt=&quot;I don&apos;t get it&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Semuanya terjawab sedikit demi sedikit apabila saya mula menggunakan JavaScript. Dalam tutorial Scala, kita terus menggunakan simbol-simbol seperti simbol lambda, jadi kita tak beberapa nak nampak apa yang berlaku under the hood semasa menggunakan simbol lambda. Berlainan dengan JavaScript, di mana kita perlu menulis anonymous function untuk membuat map reduce tanpa menggunakan simbol lambda. Lambda expression untuk JavaScript akan ada support dalam ECMAScript 6 nanti.&lt;/p&gt;
 &lt;p&gt;Berbalik pada tajuk asal, antara feature dalam functional programming ialah closure. Kalau tengok pada mana-mana tutorial, contoh yang mereka beri adalah untuk menunjukkan bagaimana return function boleh akses variable dalam function yang lain. Jadi, saya pun tertanya-tanya, &quot;Apa yang special-nya?&quot;, saya boleh sahaja letak variable tersebut sebagai global dan akses dari mana-mana sahaja, betul tak? Pendapat saya itu kekal sehinggalah saya cuba membuat web development, barulah saya nampak betapa awesome-nya konsep closure ini.&lt;/p&gt;
 &lt;p&gt;Sebelum itu, saya nak tunjuk masalah apa yang saya nak selesaikan, iaitu sign up form. Jangan gelak, saya masih baru.&lt;/p&gt;
