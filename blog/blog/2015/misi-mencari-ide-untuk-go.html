@@ -46,7 +46,6 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="../../index.html">Home</a></li>
-            <li><a href="../../myapps.html">My Apps</a></li>
             <li><a href="../../about.html">About</a></li>
             <li><a href="../../feed.xml">Subscribe</a></li>
           </ul>
@@ -63,13 +62,23 @@
 
 		<p><em>22 October 2015</em></p>
 
-		<p><p><strong>UPDATE</strong>: Selepas beberapa hari menggunakan Atom, saya jumpa satu bug. Kalau saya ada masa untuk reproduce bug tersebut, saya akan submit issue. Jadi, untuk mengelak daripada bug tersebut, saya kembali menggunakan LiteIDE dan mendapati IDE tersebut sudah boleh 'nampak' package <code>appengine</code> disebabkan langkah-langkah yang saya lakukan di bawah. Yay!</p><p>Pada masa akan datang, mungkin saya akan cuba Eclipse pulak.</p>
-<hr/><p>Saya memilih Go sebab saya perlukan programming language yang strict. Walaupun Go masih baru, Go menepati citarasa saya, antaranya static-typing. Kelebihan static-typing language adalah supaya dapat manfaat daripada IDE, seperti code auto-completion. Disebabkan Go masih baru, support daripada IDE tidaklah setanding dengan Java. Cari punya cari, akhirnya saya jumpa text editor yang boleh menjadi IDE untuk Go, iaitu <a href="https://atom.io/">Atom</a>.</p><p>Untuk menggunakan Atom untuk Go, saya menambah package <a href="https://atom.io/packages/go-plus">go-plus</a>. Selepas selesai install package tersebut, saya download functionality yang diperlukan seperti <code>gocode</code>, <code>gofmt</code>, <code>goimports</code>, <code>go vet</code>, <code>golint</code>, <code>go build</code> dan <code>go test</code>.</p><p>Sebelum ini saya menggunakan <a href="https://github.com/visualfc/liteide">LiteIDE</a>. LiteIDE juga bagus, tetapi disebabkan saya menggunakan cloud hosting Google App Engine, ada beberapa package yang IDE tersebut 'tak nampak'. Jadi, package <code>appengine</code> dan yang berkaitan tidak dapat support daripada code auto-completion.</p><p>Untuk membuatkan Atom boleh nampak package <code>appengine</code>, saya perlu set library path untuk <code>gocode</code> dengan cara:</p>
+		<p><p><strong>UPDATE</strong>: Selepas beberapa hari menggunakan Atom, saya jumpa satu bug. Kalau saya ada masa untuk reproduce bug tersebut, saya akan submit issue. Jadi, untuk mengelak daripada bug tersebut, saya kembali menggunakan LiteIDE dan mendapati IDE tersebut sudah boleh 'nampak' package <code>appengine</code> disebabkan langkah-langkah yang saya lakukan di bawah. Yay!</p>
+<p>Pada masa akan datang, mungkin saya akan cuba Eclipse pulak.</p>
+<hr/>
+<p>Saya memilih Go sebab saya perlukan programming language yang strict. Walaupun Go masih baru, Go menepati citarasa saya, antaranya static-typing. Kelebihan static-typing language adalah supaya dapat manfaat daripada IDE, seperti code auto-completion. Disebabkan Go masih baru, support daripada IDE tidaklah setanding dengan Java. Cari punya cari, akhirnya saya jumpa text editor yang boleh menjadi IDE untuk Go, iaitu <a href="https://atom.io/">Atom</a>.</p>
+<p>Untuk menggunakan Atom untuk Go, saya menambah package <a href="https://atom.io/packages/go-plus">go-plus</a>. Selepas selesai install package tersebut, saya download functionality yang diperlukan seperti <code>gocode</code>, <code>gofmt</code>, <code>goimports</code>, <code>go vet</code>, <code>golint</code>, <code>go build</code> dan <code>go test</code>.</p>
+<p>Sebelum ini saya menggunakan <a href="https://github.com/visualfc/liteide">LiteIDE</a>. LiteIDE juga bagus, tetapi disebabkan saya menggunakan cloud hosting Google App Engine, ada beberapa package yang IDE tersebut 'tak nampak'. Jadi, package <code>appengine</code> dan yang berkaitan tidak dapat support daripada code auto-completion.</p>
+<p>Untuk membuatkan Atom boleh nampak package <code>appengine</code>, saya perlu set library path untuk <code>gocode</code> dengan cara:</p>
 <pre><code>gocode set lib-path c:\go_appengine\goroot\pkg\windows_amd64_appengine
-</code></pre><p>Sekarang barulah ada code auto-completion untuk package <code>appengine</code>.</p><p>Satu lagi masalah ialah apabila save file program Go, akan keluar error yang menyatakan <code>src/appengine</code> tidak berada dalam <code>$GOPATH</code> dan <code>$GOROOT</code>. Untuk menyelesaikan masalah ini, saya membuat symlink:</p>
+</code></pre>
+<p>Sekarang barulah ada code auto-completion untuk package <code>appengine</code>.</p>
+<p>Satu lagi masalah ialah apabila save file program Go, akan keluar error yang menyatakan <code>src/appengine</code> tidak berada dalam <code>$GOPATH</code> dan <code>$GOROOT</code>. Untuk menyelesaikan masalah ini, saya membuat symlink:</p>
 <pre><code>mklink /J $GOPATH/src/appengine c:\go_appengine\goroot\src\appengine
 mklink /J $GOPATH/src/appengine_internal c:\go_appengine\goroot\src\appengine_internal
-</code></pre><p><a href="https://technet.microsoft.com/en-us/library/cc753194.aspx">mklink</a> ialah command dalam Windows untuk membuat symlink. Kalau anda menggunakan operating system yang lain akan berbeza.</p><p>Walaupun semua steps di atas agak leceh, saya tetap berpuas hati.</p><p>Alternatif kepada semua cara di atas adalah dengan menggunakan package <code>appengine</code> yang baru iaitu <code>google.golang.org/appengine</code>. Tetapi dengan menggunakan package tersebut, saya tidak dapat code auto-completion jika menggunakan package yang berada di dalamnya seperti <code>google.golang.org/appengine/user</code> dan <code>google.golang.org/appengine/log</code>.</p></p>
+</code></pre>
+<p><a href="https://technet.microsoft.com/en-us/library/cc753194.aspx">mklink</a> ialah command dalam Windows untuk membuat symlink. Kalau anda menggunakan operating system yang lain akan berbeza.</p>
+<p>Walaupun semua steps di atas agak leceh, saya tetap berpuas hati.</p>
+<p>Alternatif kepada semua cara di atas adalah dengan menggunakan package <code>appengine</code> yang baru iaitu <code>google.golang.org/appengine</code>. Tetapi dengan menggunakan package tersebut, saya tidak dapat code auto-completion jika menggunakan package yang berada di dalamnya seperti <code>google.golang.org/appengine/user</code> dan <code>google.golang.org/appengine/log</code>.</p></p>
 
 		<hr />
 
@@ -81,7 +90,7 @@ mklink /J $GOPATH/src/appengine_internal c:\go_appengine\goroot\src\appengine_in
     
     <div id="footer">
       <div class="container text-right">
-        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.4.0</a></p>
+        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.5.0</a></p>
       </div>
     </div>
     
@@ -91,18 +100,6 @@ mklink /J $GOPATH/src/appengine_internal c:\go_appengine\goroot\src\appengine_in
     <script src="../../js/jquery-1.11.1.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/prettify.js"></script>
-
-
-    <!-- Google Analytics -->
-    <script>
-     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-     ga('create', 'UA-73790861-1', 'auto');
-     ga('send', 'pageview');
-    </script>
     
   </body>
 </html>

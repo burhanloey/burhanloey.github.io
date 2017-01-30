@@ -46,7 +46,6 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="../../index.html">Home</a></li>
-            <li><a href="../../myapps.html">My Apps</a></li>
             <li><a href="../../about.html">About</a></li>
             <li><a href="../../feed.xml">Subscribe</a></li>
           </ul>
@@ -63,7 +62,13 @@
 
 		<p><em>10 February 2016</em></p>
 
-		<p><p>Baru-baru ini saya ada praktis concurrency dengan membuat web scraping menggunakan C++11. Sebelum ini saya takut untuk programming menggunakan C++ sebab terpaksa membuat memory management secara manual. Selepas membaca segala best practice untuk C++, barulah nampak yang C++11/C++14 boleh tahan elegant-nya. Yang nampak kurang sedap bila ada orang mengaku pandai C++ tapi programming macam C.</p><p>Berbalik ke cerita web scraping, C++ memang elegant, sehinggalah kena guna library C. Kalau tak jumpa wrapper C++ untuk library tersebut, mulut memang akan sumpah seranah waktu programming. Saya menggunakan library 'libcurl' untuk mendapatkan HTML daripada website, 'libxml2' untuk parse code HTML, dan library Boost untuk membuat concurrency.</p><p>'libcurl' dan 'libxml2' memang sudah ada wrapper C++, tetapi untuk educational purpose, saya cuba untuk wrap sendiri library tersebut menggunakan kaedah Resource Acquisition Is Initialization (RAII). Kaedah RAII memang selalu digunakan dalam C++ untuk memudahkan memory management.</p><p>Semasa cubaan awal, segalanya berjalan lancar. Boleh dapatkan code HTML daripada website, dan boleh parse HTML untuk dapatkan data yang diingini. Cabaran bermula apabila saya mula membuat concurrency. Apabila run sahaja, terus dapat segfault (segmentation fault). Kalau yang dah biasa, memang akan tahu yang segfault mesti punca daripada masalah memory.</p><p>Jadi, macam-macamlah yang saya ubahsuai code untuk menyelesaikan masalah. Tukar daripada kaedah menggunakan thread seperti biasa, kepada menggunakan future/promise, dan akhir sekali kepada menggunakan barrier. Selepas meletakkan barrier, saya perasan ada data yang saya dapat fetch sampai satu tahap barulah akan segfault seperti biasa.</p><p>Kemudian saya pun tengoklah macam mana rupa code HTML yang saya fetch tersebut. Barulah perasan yang saya dah kena block daripada website tersebut. Seperti semua sedia maklum, program C++ sememangnya laju. Jadi web scraping dengan concurrency akan jadi amat laju dan berpotensi membuatkan pemilik website tersebut berasa bimbang, lantas akan menghalang kita daripada mengakses website mereka.</p><p>Kesimpulannya, moral of the story untuk kisah ini ialah kita mestilah beretika semasa membuat web scraping. Seboleh-bolehnya jangan memaksa sangat website tersebut untuk handle request daripada program kita. Tak perlu laju-laju sangat pun takpe, janji dapat data yang dihajati. Kalau nak lagi elok, minta izin daripada pemilik website tersebut untuk membuat web scraping, lagi bagus.</p></p>
+		<p><p>Baru-baru ini saya ada praktis concurrency dengan membuat web scraping menggunakan C++11. Sebelum ini saya takut untuk programming menggunakan C++ sebab terpaksa membuat memory management secara manual. Selepas membaca segala best practice untuk C++, barulah nampak yang C++11/C++14 boleh tahan elegant-nya. Yang nampak kurang sedap bila ada orang mengaku pandai C++ tapi programming macam C.</p>
+<p>Berbalik ke cerita web scraping, C++ memang elegant, sehinggalah kena guna library C. Kalau tak jumpa wrapper C++ untuk library tersebut, mulut memang akan sumpah seranah waktu programming. Saya menggunakan library 'libcurl' untuk mendapatkan HTML daripada website, 'libxml2' untuk parse code HTML, dan library Boost untuk membuat concurrency.</p>
+<p>'libcurl' dan 'libxml2' memang sudah ada wrapper C++, tetapi untuk educational purpose, saya cuba untuk wrap sendiri library tersebut menggunakan kaedah Resource Acquisition Is Initialization (RAII). Kaedah RAII memang selalu digunakan dalam C++ untuk memudahkan memory management.</p>
+<p>Semasa cubaan awal, segalanya berjalan lancar. Boleh dapatkan code HTML daripada website, dan boleh parse HTML untuk dapatkan data yang diingini. Cabaran bermula apabila saya mula membuat concurrency. Apabila run sahaja, terus dapat segfault (segmentation fault). Kalau yang dah biasa, memang akan tahu yang segfault mesti punca daripada masalah memory.</p>
+<p>Jadi, macam-macamlah yang saya ubahsuai code untuk menyelesaikan masalah. Tukar daripada kaedah menggunakan thread seperti biasa, kepada menggunakan future/promise, dan akhir sekali kepada menggunakan barrier. Selepas meletakkan barrier, saya perasan ada data yang saya dapat fetch sampai satu tahap barulah akan segfault seperti biasa.</p>
+<p>Kemudian saya pun tengoklah macam mana rupa code HTML yang saya fetch tersebut. Barulah perasan yang saya dah kena block daripada website tersebut. Seperti semua sedia maklum, program C++ sememangnya laju. Jadi web scraping dengan concurrency akan jadi amat laju dan berpotensi membuatkan pemilik website tersebut berasa bimbang, lantas akan menghalang kita daripada mengakses website mereka.</p>
+<p>Kesimpulannya, moral of the story untuk kisah ini ialah kita mestilah beretika semasa membuat web scraping. Seboleh-bolehnya jangan memaksa sangat website tersebut untuk handle request daripada program kita. Tak perlu laju-laju sangat pun takpe, janji dapat data yang dihajati. Kalau nak lagi elok, minta izin daripada pemilik website tersebut untuk membuat web scraping, lagi bagus.</p></p>
 
 		<hr />
 
@@ -75,7 +80,7 @@
     
     <div id="footer">
       <div class="container text-right">
-        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.4.0</a></p>
+        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.5.0</a></p>
       </div>
     </div>
     
@@ -85,18 +90,6 @@
     <script src="../../js/jquery-1.11.1.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/prettify.js"></script>
-
-
-    <!-- Google Analytics -->
-    <script>
-     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-     ga('create', 'UA-73790861-1', 'auto');
-     ga('send', 'pageview');
-    </script>
     
   </body>
 </html>

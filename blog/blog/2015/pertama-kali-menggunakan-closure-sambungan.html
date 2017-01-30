@@ -46,7 +46,6 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="../../index.html">Home</a></li>
-            <li><a href="../../myapps.html">My Apps</a></li>
             <li><a href="../../about.html">About</a></li>
             <li><a href="../../feed.xml">Subscribe</a></li>
           </ul>
@@ -63,7 +62,10 @@
 
 		<p><em>19 October 2015</em></p>
 
-		<p><p>Sebelum ini saya ada tunjuk bagaimana kita boleh menggunakan closure untuk menggabungkan satu function dengan function yang lain. Di bahagian paling bawah post tersebut, saya ada meminta pembaca untuk selesaikan code yang masih ada bahagian berulang. Jika anda belum mencuba dan ingin mencuba boleh lihat di <a href="/blog/2015/pertama-kali-menggunakan-closure.html">post ini</a>. Jika tak mahu, boleh teruskan membaca untuk lihat cara saya menyelesaikannya.</p><p>Jadi, kenapa kena guna closure? Saje, supaya code nampak lebih elegant. Kalau boleh semua function saya nak guna closure.</p><p><img src="/images/all-closures.png" alt="Write all the functions with closure!!!""/></p><p>Baiklah. Code sebelum ini masih ada bahagian yang berulang, iaitu:</p>
+		<p><p>Sebelum ini saya ada tunjuk bagaimana kita boleh menggunakan closure untuk menggabungkan satu function dengan function yang lain. Di bahagian paling bawah post tersebut, saya ada meminta pembaca untuk selesaikan code yang masih ada bahagian berulang. Jika anda belum mencuba dan ingin mencuba boleh lihat di <a href="/blog/2015/pertama-kali-menggunakan-closure.html">post ini</a>. Jika tak mahu, boleh teruskan membaca untuk lihat cara saya menyelesaikannya.</p>
+<p>Jadi, kenapa kena guna closure? Saje, supaya code nampak lebih elegant. Kalau boleh semua function saya nak guna closure.</p>
+<p><img src="/images/all-closures.png" alt="Write all the functions with closure!!!" /></p>
+<p>Baiklah. Code sebelum ini masih ada bahagian yang berulang, iaitu:</p>
 <pre class="prettyprint">
 <code>
 // Check password length. Toggle icon accordingly. Password must be at least 
@@ -90,7 +92,10 @@ function verifyPassword() {
     }
 }
 </code>
-</pre><p>Tetapi masalahnya condition untuk if else antara kedua-dua function tersebut adalah berlainan.</p><p>Dalam functional programming, semua benda kita boleh jadikan function, dan kita juga boleh passing function melalui parameter. Jadi, secara teorinya kita akan jadikan condition untuk if else tersebut sebagai function, kemudian kita akan hantar function tersebut melalui parameter untuk closure. Saya akan tunjukkan perlahan-lahan menggunakan salah satu function tersebut.</p><p>Function yang asal adalah seperti ini:</p>
+</pre>
+<p>Tetapi masalahnya condition untuk if else antara kedua-dua function tersebut adalah berlainan.</p>
+<p>Dalam functional programming, semua benda kita boleh jadikan function, dan kita juga boleh passing function melalui parameter. Jadi, secara teorinya kita akan jadikan condition untuk if else tersebut sebagai function, kemudian kita akan hantar function tersebut melalui parameter untuk closure. Saya akan tunjukkan perlahan-lahan menggunakan salah satu function tersebut.</p>
+<p>Function yang asal adalah seperti ini:</p>
 <pre class="prettyprint">
 <code>
 function validatePassword() {
@@ -103,7 +108,8 @@ function validatePassword() {
     }
 }
 </code>
-</pre><p>Sekarang kita asingkan condition tersebut ke dalam satu variable:</p>
+</pre>
+<p>Sekarang kita asingkan condition tersebut ke dalam satu variable:</p>
 <pre class="prettyprint">
 <code>
 function validatePassword() {
@@ -118,7 +124,8 @@ function validatePassword() {
     }
 }
 </code>
-</pre><p>Dan untuk menjadikannya sebagai function, kita boleh menggunakan singleton yang akan self-invoke:</p>
+</pre>
+<p>Dan untuk menjadikannya sebagai function, kita boleh menggunakan singleton yang akan self-invoke:</p>
 <pre class="prettyprint">
 <code>
 function validatePassword() {
@@ -133,7 +140,8 @@ function validatePassword() {
     }
 }
 </code>
-</pre><p>Akhirnya, kita sudah menjadikan condition tersebut sebagai sebuah function, dan kita boleh asingkan condition tersebut di luar, seperti berikut:</p>
+</pre>
+<p>Akhirnya, kita sudah menjadikan condition tersebut sebagai sebuah function, dan kita boleh asingkan condition tersebut di luar, seperti berikut:</p>
 <pre class="prettyprint">
 <code>
 function() {
@@ -152,7 +160,8 @@ function validatePassword(condition) {
     }
 }
 </code>
-</pre><p>Masalah dengan cara ini ialah apabila kita hantar condition melalui parameter, kita akan invoke function validatePassword() secara automatik. Untuk tidak invoke function tersebut, kita boleh menggunakan closure:</p>
+</pre>
+<p>Masalah dengan cara ini ialah apabila kita hantar condition melalui parameter, kita akan invoke function validatePassword() secara automatik. Untuk tidak invoke function tersebut, kita boleh menggunakan closure:</p>
 <pre class="prettyprint">
 <code>
 function() {
@@ -173,7 +182,8 @@ function validatePassword(condition) {
     };
 }
 </code>
-</pre><p>Sekarang untuk menyelesaikan masalah code yang berulang, kita boleh abstract-kan function menggunakan keyword <code>this</code>, seperti berikut:</p>
+</pre>
+<p>Sekarang untuk menyelesaikan masalah code yang berulang, kita boleh abstract-kan function menggunakan keyword <code>this</code>, seperti berikut:</p>
 <pre class="prettyprint">
 <code>
 function toggleIcon(condition) {
@@ -191,7 +201,8 @@ function toggleIcon(condition) {
     };
 }
 </code>
-</pre><p>Kalau mahu lebih ringkas, boleh tulis seperti ini:</p>
+</pre>
+<p>Kalau mahu lebih ringkas, boleh tulis seperti ini:</p>
 <pre class="prettyprint">
 <code>
 function toggleIcon(ok) {
@@ -208,7 +219,10 @@ function toggleIcon(ok) {
     };
 }
 </code>
-</pre><p>Note: Icon boleh di-refer menggunakan <code>$(this)</code>, dan bukannya seperti sebelum ini di mana kita menggunakan <code>$(this).parent().next()</code> kerana function tersebut adalah callback kepada event untuk icon itu sendiri. Kalau nak tukar scope, boleh guna <code>bind()</code>, tapi itu dah lari dari topik.</p><p>Sekarang kita sudah ada closure untuk handle toggle icon.</p><p>Selepas refactor, akhir sekali code kita akan jadi seperti ini:</p>
+</pre>
+<p>Note: Icon boleh di-refer menggunakan <code>$(this)</code>, dan bukannya seperti sebelum ini di mana kita menggunakan <code>$(this).parent().next()</code> kerana function tersebut adalah callback kepada event untuk icon itu sendiri. Kalau nak tukar scope, boleh guna <code>bind()</code>, tapi itu dah lari dari topik.</p>
+<p>Sekarang kita sudah ada closure untuk handle toggle icon.</p>
+<p>Selepas refactor, akhir sekali code kita akan jadi seperti ini:</p>
 <pre class="prettyprint">
 <code>
 // Condition that states that password input must be minimum of 6 characters.
@@ -255,7 +269,9 @@ function showIcon(duration, callback) {
 $("#password-input").keyup(showIcon(0, toggleIcon(validate)));
 $("#verify-password-input").keyup(showIcon(0, toggleIcon(verify)));
 </code>
-</pre><p>Bandingkan dengan code sebelum ini, yang mana lebih anda suka?</p><p>Kesimpulannya, closure is awesome. Seperti yang tertulis di Mozilla, kita boleh menggunakan closure sebagai 'function factory'. Anda boleh baca dengan lebih lanjut di contoh makeAdder di <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures#Closure">sini</a>.</p></p>
+</pre>
+<p>Bandingkan dengan code sebelum ini, yang mana lebih anda suka?</p>
+<p>Kesimpulannya, closure is awesome. Seperti yang tertulis di Mozilla, kita boleh menggunakan closure sebagai 'function factory'. Anda boleh baca dengan lebih lanjut di contoh makeAdder di <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures#Closure">sini</a>.</p></p>
 
 		<hr />
 
@@ -267,7 +283,7 @@ $("#verify-password-input").keyup(showIcon(0, toggleIcon(verify)));
     
     <div id="footer">
       <div class="container text-right">
-        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.4.0</a></p>
+        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.5.0</a></p>
       </div>
     </div>
     
@@ -277,18 +293,6 @@ $("#verify-password-input").keyup(showIcon(0, toggleIcon(verify)));
     <script src="../../js/jquery-1.11.1.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/prettify.js"></script>
-
-
-    <!-- Google Analytics -->
-    <script>
-     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-     ga('create', 'UA-73790861-1', 'auto');
-     ga('send', 'pageview');
-    </script>
     
   </body>
 </html>
