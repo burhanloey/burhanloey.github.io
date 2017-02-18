@@ -59,6 +59,25 @@
 		<div class="page-header">
 			<h1>Blog</h1>
 		</div>
+	  			<a href="blog/2017/concurrency-model-dalam-clojure.html"><h1>Concurrency Model dalam Clojure</h1></a>
+	  			<p>18 February 2017</p>
+	  			<p><p>Di tempat kerja, kami perlu memindahkan teknologi daripada menggunakan Drupal 7 ke <a href="https://www.playframework.com">Play Framework</a> (Java) kerana Drupal sudah tidak mampu lagi untuk menampung bilangan <em>request</em> daripada pengguna. Seperti yang dikhabarkan oleh senior programmer, pada asalnya mereka berpindah ke <a href="http://vertx.io">Vert.x</a> dengan cara <em>load</em> code PHP ke JVM dan masih boleh meningkatkan bilangan <em>request</em> sepuluh kali ganda. Saya pun terkejut. Namun, mereka akhirnya bertukar ke Play Framework kerana Vert.x seperti terlalu <em>minimal</em>.</p>
+<p>Semasa menulis code untuk Play Framework, saya diingatkan untuk menulis code menggunakan <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a>, salah satu <em>feature</em> baru dalam Java 8. CompletableFuture dalam Java 8 sama sahaja seperti future/promise yang ada dalam programming language yang lain seperti Clojure. Promise untuk Java 8 adalah dengan menggunakan interface <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html">CompletionStage</a>.</p>
+<p>Selepas beberapa minggu menulis <em>fully asynchronous code</em> dalam Java 8, terdetik hati untuk menulis <em>asynchronous code</em> dalam programming language kegemaran saya iaitu Clojure.</p>
+<p>Setelah menggodek internet, saya mendapati Clojure ada beberapa model untuk membuat <em>concurrency</em>, antaranya:</p>
+<ul>
+  <li>future/promise</li>
+  <li>coroutine (menggunakan library <a href="https://github.com/clojure/core.async">core.async</a>)</li>
+  <li>actor model (menggunakan library <a href="https://github.com/puniverse/pulsar">pulsar</a>/quasar)</li>
+  <li><a href="https://github.com/funcool/promesa">promesa</a> (library untuk menggunakan CompletableFuture Java 8)</li>
+  <li>parallel workers (interop dengan Java)</li>
+</ul>
+<p><strong>Future/promise</strong> sememangnya sudah ada secara <em>native</em> dalam Clojure. Saya memang suka model yang ini terutamanya apabila Clojure menggunakan <em>immutable data</em> secara <em>default</em> jadi saya tidak perlu bimbang dengan <em>race condition</em>.</p>
+<p><strong>Coroutine</strong> adalah model yang sama digunakan dalam programming language Go. Model ini menghantar proses melalui <em>channel</em>.</p>
+<p><strong>Actor model</strong> pula digunakan dalam programming language seperti Scala dan Erlang. Saya tidak tahu sangat tentang actor model.</p>
+<p>Library <strong>promesa</strong> membolehkan programmer Clojure menulis code seperti Java 8, tetapi saya cuba elakkan kerana perlu menggunakan library luar.</p>
+<p>Untuk <strong>parallel workers</strong>, nasihat saya cuba elakkan.</p>
+<p>Setelah melihat beberapa pilihan ini, saya menyangkakan pilihan cuma bergantung kepada programmer sahaja, ikut mana yang diminati. Namun, saya ada terbaca di stackoverflow yang menyatakan untuk memilih concurrency model perlulah mengikut situasi. Cuma saya masih belum nampak lagi.</p></p>
 	  			<a href="blog/2016/etika-web-scraping.html"><h1>Etika Web Scraping</h1></a>
 	  			<p>10 February 2016</p>
 	  			<p><p>Baru-baru ini saya ada praktis concurrency dengan membuat web scraping menggunakan C++11. Sebelum ini saya takut untuk programming menggunakan C++ sebab terpaksa membuat memory management secara manual. Selepas membaca segala best practice untuk C++, barulah nampak yang C++11/C++14 boleh tahan elegant-nya. Yang nampak kurang sedap bila ada orang mengaku pandai C++ tapi programming macam C.</p>
