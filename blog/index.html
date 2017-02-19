@@ -59,7 +59,7 @@
 		<div class="page-header">
 			<h1>Blog</h1>
 		</div>
-	  			<a href="blog/2017/concurrency-model-dalam-clojure.html"><h1>Concurrency Model dalam Clojure</h1></a>
+	  			<a href="post/2017/concurrency-model-dalam-clojure.html"><h1>Concurrency Model dalam Clojure</h1></a>
 	  			<p>18 February 2017</p>
 	  			<p><p>Di tempat kerja, kami perlu memindahkan teknologi daripada menggunakan Drupal 7 ke <a href="https://www.playframework.com">Play Framework</a> (Java) kerana Drupal sudah tidak mampu lagi untuk menampung bilangan <em>request</em> daripada pengguna. Seperti yang dikhabarkan oleh senior programmer, pada asalnya mereka berpindah ke <a href="http://vertx.io">Vert.x</a> dengan cara <em>load</em> code PHP ke JVM dan masih boleh meningkatkan bilangan <em>request</em> sepuluh kali ganda. Saya pun terkejut. Namun, mereka akhirnya bertukar ke Play Framework kerana Vert.x seperti terlalu <em>minimal</em>.</p>
 <p>Semasa menulis code untuk Play Framework, saya diingatkan untuk menulis code menggunakan <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a>, salah satu <em>feature</em> baru dalam Java 8. CompletableFuture dalam Java 8 sama sahaja seperti future/promise yang ada dalam programming language yang lain seperti Clojure. Promise untuk Java 8 adalah dengan menggunakan interface <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html">CompletionStage</a>.</p>
@@ -78,7 +78,7 @@
 <p>Library <strong>promesa</strong> membolehkan programmer Clojure menulis code seperti Java 8, tetapi saya cuba elakkan kerana perlu menggunakan library luar.</p>
 <p>Untuk <strong>parallel workers</strong>, nasihat saya cuba elakkan.</p>
 <p>Setelah melihat beberapa pilihan ini, saya menyangkakan pilihan cuma bergantung kepada programmer sahaja, ikut mana yang diminati. Namun, saya ada terbaca di stackoverflow yang menyatakan untuk memilih concurrency model perlulah mengikut situasi. Cuma saya masih belum nampak lagi.</p></p>
-	  			<a href="blog/2016/etika-web-scraping.html"><h1>Etika Web Scraping</h1></a>
+	  			<a href="post/2016/etika-web-scraping.html"><h1>Etika Web Scraping</h1></a>
 	  			<p>10 February 2016</p>
 	  			<p><p>Baru-baru ini saya ada praktis concurrency dengan membuat web scraping menggunakan C++11. Sebelum ini saya takut untuk programming menggunakan C++ sebab terpaksa membuat memory management secara manual. Selepas membaca segala best practice untuk C++, barulah nampak yang C++11/C++14 boleh tahan elegant-nya. Yang nampak kurang sedap bila ada orang mengaku pandai C++ tapi programming macam C.</p>
 <p>Berbalik ke cerita web scraping, C++ memang elegant, sehinggalah kena guna library C. Kalau tak jumpa wrapper C++ untuk library tersebut, mulut memang akan sumpah seranah waktu programming. Saya menggunakan library 'libcurl' untuk mendapatkan HTML daripada website, 'libxml2' untuk parse code HTML, dan library Boost untuk membuat concurrency.</p>
@@ -87,7 +87,7 @@
 <p>Jadi, macam-macamlah yang saya ubahsuai code untuk menyelesaikan masalah. Tukar daripada kaedah menggunakan thread seperti biasa, kepada menggunakan future/promise, dan akhir sekali kepada menggunakan barrier. Selepas meletakkan barrier, saya perasan ada data yang saya dapat fetch sampai satu tahap barulah akan segfault seperti biasa.</p>
 <p>Kemudian saya pun tengoklah macam mana rupa code HTML yang saya fetch tersebut. Barulah perasan yang saya dah kena block daripada website tersebut. Seperti semua sedia maklum, program C++ sememangnya laju. Jadi web scraping dengan concurrency akan jadi amat laju dan berpotensi membuatkan pemilik website tersebut berasa bimbang, lantas akan menghalang kita daripada mengakses website mereka.</p>
 <p>Kesimpulannya, moral of the story untuk kisah ini ialah kita mestilah beretika semasa membuat web scraping. Seboleh-bolehnya jangan memaksa sangat website tersebut untuk handle request daripada program kita. Tak perlu laju-laju sangat pun takpe, janji dapat data yang dihajati. Kalau nak lagi elok, minta izin daripada pemilik website tersebut untuk membuat web scraping, lagi bagus.</p></p>
-	  			<a href="blog/2015/misi-mencari-ide-untuk-go.html"><h1>Misi Mencari IDE Untuk Go</h1></a>
+	  			<a href="post/2015/misi-mencari-ide-untuk-go.html"><h1>Misi Mencari IDE Untuk Go</h1></a>
 	  			<p>22 October 2015</p>
 	  			<p><p><strong>UPDATE</strong>: Selepas beberapa hari menggunakan Atom, saya jumpa satu bug. Kalau saya ada masa untuk reproduce bug tersebut, saya akan submit issue. Jadi, untuk mengelak daripada bug tersebut, saya kembali menggunakan LiteIDE dan mendapati IDE tersebut sudah boleh 'nampak' package <code>appengine</code> disebabkan langkah-langkah yang saya lakukan di bawah. Yay!</p>
 <p>Pada masa akan datang, mungkin saya akan cuba Eclipse pulak.</p>
@@ -106,11 +106,11 @@ mklink /J $GOPATH/src/appengine_internal c:\go_appengine\goroot\src\appengine_in
 <p><a href="https://technet.microsoft.com/en-us/library/cc753194.aspx">mklink</a> ialah command dalam Windows untuk membuat symlink. Kalau anda menggunakan operating system yang lain akan berbeza.</p>
 <p>Walaupun semua steps di atas agak leceh, saya tetap berpuas hati.</p>
 <p>Alternatif kepada semua cara di atas adalah dengan menggunakan package <code>appengine</code> yang baru iaitu <code>google.golang.org/appengine</code>. Tetapi dengan menggunakan package tersebut, saya tidak dapat code auto-completion jika menggunakan package yang berada di dalamnya seperti <code>google.golang.org/appengine/user</code> dan <code>google.golang.org/appengine/log</code>.</p></p>
-	  			<a href="blog/2015/pertama-kali-menggunakan-closure-sambungan.html"><h1>Pertama Kali Menggunakan &apos;Closure&apos;(sambungan...)</h1></a>
+	  			<a href="post/2015/pertama-kali-menggunakan-closure-sambungan.html"><h1>Pertama Kali Menggunakan &apos;Closure&apos;(sambungan...)</h1></a>
 	  			<p>19 October 2015</p>
 	  			<p><p>Sebelum ini saya ada tunjuk bagaimana kita boleh menggunakan closure untuk menggabungkan satu function dengan function yang lain. Di bahagian paling bawah post tersebut, saya ada meminta pembaca untuk selesaikan code yang masih ada bahagian berulang. Jika anda belum mencuba dan ingin mencuba boleh lihat di <a href="/blog/2015/pertama-kali-menggunakan-closure.html">post ini</a>. Jika tak mahu, boleh teruskan membaca untuk lihat cara saya menyelesaikannya.</p>
 <p>Jadi, kenapa kena guna closure? Saje, supaya code nampak lebih elegant. Kalau boleh semua function saya nak guna closure.</p>
-<p><img src="/blog/images/all-closures.png" alt="Write all the functions with closure!!!" /></p>
+<p><img src="/images/all-closures.png" alt="Write all the functions with closure!!!" /></p>
 <p>Baiklah. Code sebelum ini masih ada bahagian yang berulang, iaitu:</p>
 <pre class="prettyprint">
 <code>
@@ -318,10 +318,10 @@ $("#verify-password-input").keyup(showIcon(0, toggleIcon(verify)));
 </pre>
 <p>Bandingkan dengan code sebelum ini, yang mana lebih anda suka?</p>
 <p>Kesimpulannya, closure is awesome. Seperti yang tertulis di Mozilla, kita boleh menggunakan closure sebagai 'function factory'. Anda boleh baca dengan lebih lanjut di contoh makeAdder di <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures#Closure">sini</a>.</p></p>
-	  			<a href="blog/2015/pertama-kali-menggunakan-closure.html"><h1>Pertama Kali Menggunakan &apos;Closure&apos;</h1></a>
+	  			<a href="post/2015/pertama-kali-menggunakan-closure.html"><h1>Pertama Kali Menggunakan &apos;Closure&apos;</h1></a>
 	  			<p>18 October 2015</p>
 	  			<p><p>Saya masih baru dalam web development dan functional programming. Semasa belajar functional programming dengan Scala, ada beberapa konsep dan teknik yang rasa-rasa macam faham, rasa-rasa macam tak, rasa-rasa tak pasti, antaranya lambda expression, map reduce, closure, dan monad.</p>
-<p><img src="/blog/images/i-dont-get-it.png" alt="I don't get it" /></p>
+<p><img src="/images/i-dont-get-it.png" alt="I don't get it" /></p>
 <p>Semuanya terjawab sedikit demi sedikit apabila saya mula menggunakan JavaScript. Dalam tutorial Scala, kita terus menggunakan simbol-simbol seperti simbol lambda, jadi kita tak beberapa nak nampak apa yang berlaku under the hood semasa menggunakan simbol lambda. Berlainan dengan JavaScript, di mana kita perlu menulis anonymous function untuk membuat map reduce tanpa menggunakan simbol lambda. Lambda expression untuk JavaScript akan ada support dalam ECMAScript 6 nanti.</p>
 <p>Berbalik pada tajuk asal, antara feature dalam functional programming ialah closure. Kalau tengok pada mana-mana tutorial, contoh yang mereka beri adalah untuk menunjukkan bagaimana return function boleh akses variable dalam function yang lain. Jadi, saya pun tertanya-tanya, "Apa yang special-nya?", saya boleh sahaja letak variable tersebut sebagai global dan akses dari mana-mana sahaja, betul tak? Pendapat saya itu kekal sehinggalah saya cuba membuat web development, barulah saya nampak betapa awesome-nya konsep closure ini.</p>
 <p>Sebelum itu, saya nak tunjuk masalah apa yang saya nak selesaikan, iaitu sign up form. Jangan gelak, saya masih baru.</p>

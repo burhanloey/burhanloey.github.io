@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>burhanloey's blog</title>
-    <link>http://www.burhanloey.com</link>
-    <atom:link href="http://www.burhanloey.com/feed.xml" rel="self" type="application/rss+xml" />
+    <link>http://www.burhanloey.com/blog</link>
+    <atom:link href="http://www.burhanloey.com/blog/feed.xml" rel="self" type="application/rss+xml" />
     <description>JVM enthusiast, functional programming fanboy, and computer vision hobbyist</description>
     <language>en-gb</language>
-    <pubDate>Sun, 19 Feb 2017 12:55:01 +0800</pubDate>
-    <lastBuildDate>Sun, 19 Feb 2017 12:55:01 +0800</lastBuildDate>
+    <pubDate>Sun, 19 Feb 2017 13:31:09 +0800</pubDate>
+    <lastBuildDate>Sun, 19 Feb 2017 13:31:09 +0800</lastBuildDate>
 
     <item>
       <title>Concurrency Model dalam Clojure</title>
-      <link>http://www.burhanloey.com/blog/2017/concurrency-model-dalam-clojure.html</link>
+      <link>http://www.burhanloey.com/blog/post/2017/concurrency-model-dalam-clojure.html</link>
       <pubDate>Sat, 18 Feb 2017 00:00:00 +0800</pubDate>
-      <guid isPermaLink="false">blog/2017/concurrency-model-dalam-clojure.html</guid>
+      <guid isPermaLink="false">post/2017/concurrency-model-dalam-clojure.html</guid>
       	<description>
 	&lt;p&gt;Di tempat kerja, kami perlu memindahkan teknologi daripada menggunakan Drupal 7 ke &lt;a href=&quot;https://www.playframework.com&quot;&gt;Play Framework&lt;/a&gt; (Java) kerana Drupal sudah tidak mampu lagi untuk menampung bilangan &lt;em&gt;request&lt;/em&gt; daripada pengguna. Seperti yang dikhabarkan oleh senior programmer, pada asalnya mereka berpindah ke &lt;a href=&quot;http://vertx.io&quot;&gt;Vert.x&lt;/a&gt; dengan cara &lt;em&gt;load&lt;/em&gt; code PHP ke JVM dan masih boleh meningkatkan bilangan &lt;em&gt;request&lt;/em&gt; sepuluh kali ganda. Saya pun terkejut. Namun, mereka akhirnya bertukar ke Play Framework kerana Vert.x seperti terlalu &lt;em&gt;minimal&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Semasa menulis code untuk Play Framework, saya diingatkan untuk menulis code menggunakan &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html&quot;&gt;CompletableFuture&lt;/a&gt;, salah satu &lt;em&gt;feature&lt;/em&gt; baru dalam Java 8. CompletableFuture dalam Java 8 sama sahaja seperti future/promise yang ada dalam programming language yang lain seperti Clojure. Promise untuk Java 8 adalah dengan menggunakan interface &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html&quot;&gt;CompletionStage&lt;/a&gt;.&lt;/p&gt;
@@ -36,9 +36,9 @@
     </item>
     <item>
       <title>Etika Web Scraping</title>
-      <link>http://www.burhanloey.com/blog/2016/etika-web-scraping.html</link>
+      <link>http://www.burhanloey.com/blog/post/2016/etika-web-scraping.html</link>
       <pubDate>Wed, 10 Feb 2016 00:00:00 +0800</pubDate>
-      <guid isPermaLink="false">blog/2016/etika-web-scraping.html</guid>
+      <guid isPermaLink="false">post/2016/etika-web-scraping.html</guid>
       	<description>
 	&lt;p&gt;Baru-baru ini saya ada praktis concurrency dengan membuat web scraping menggunakan C++11. Sebelum ini saya takut untuk programming menggunakan C++ sebab terpaksa membuat memory management secara manual. Selepas membaca segala best practice untuk C++, barulah nampak yang C++11/C++14 boleh tahan elegant-nya. Yang nampak kurang sedap bila ada orang mengaku pandai C++ tapi programming macam C.&lt;/p&gt;
 &lt;p&gt;Berbalik ke cerita web scraping, C++ memang elegant, sehinggalah kena guna library C. Kalau tak jumpa wrapper C++ untuk library tersebut, mulut memang akan sumpah seranah waktu programming. Saya menggunakan library &apos;libcurl&apos; untuk mendapatkan HTML daripada website, &apos;libxml2&apos; untuk parse code HTML, dan library Boost untuk membuat concurrency.&lt;/p&gt;
@@ -51,9 +51,9 @@
     </item>
     <item>
       <title>Misi Mencari IDE Untuk Go</title>
-      <link>http://www.burhanloey.com/blog/2015/misi-mencari-ide-untuk-go.html</link>
+      <link>http://www.burhanloey.com/blog/post/2015/misi-mencari-ide-untuk-go.html</link>
       <pubDate>Thu, 22 Oct 2015 00:00:00 +0800</pubDate>
-      <guid isPermaLink="false">blog/2015/misi-mencari-ide-untuk-go.html</guid>
+      <guid isPermaLink="false">post/2015/misi-mencari-ide-untuk-go.html</guid>
       	<description>
 	&lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;: Selepas beberapa hari menggunakan Atom, saya jumpa satu bug. Kalau saya ada masa untuk reproduce bug tersebut, saya akan submit issue. Jadi, untuk mengelak daripada bug tersebut, saya kembali menggunakan LiteIDE dan mendapati IDE tersebut sudah boleh &apos;nampak&apos; package &lt;code&gt;appengine&lt;/code&gt; disebabkan langkah-langkah yang saya lakukan di bawah. Yay!&lt;/p&gt;
 &lt;p&gt;Pada masa akan datang, mungkin saya akan cuba Eclipse pulak.&lt;/p&gt;
@@ -76,13 +76,13 @@ mklink /J $GOPATH/src/appengine_internal c:\go_appengine\goroot\src\appengine_in
     </item>
     <item>
       <title>Pertama Kali Menggunakan &apos;Closure&apos;(sambungan...)</title>
-      <link>http://www.burhanloey.com/blog/2015/pertama-kali-menggunakan-closure-sambungan.html</link>
+      <link>http://www.burhanloey.com/blog/post/2015/pertama-kali-menggunakan-closure-sambungan.html</link>
       <pubDate>Mon, 19 Oct 2015 00:00:00 +0800</pubDate>
-      <guid isPermaLink="false">blog/2015/pertama-kali-menggunakan-closure-sambungan.html</guid>
+      <guid isPermaLink="false">post/2015/pertama-kali-menggunakan-closure-sambungan.html</guid>
       	<description>
 	&lt;p&gt;Sebelum ini saya ada tunjuk bagaimana kita boleh menggunakan closure untuk menggabungkan satu function dengan function yang lain. Di bahagian paling bawah post tersebut, saya ada meminta pembaca untuk selesaikan code yang masih ada bahagian berulang. Jika anda belum mencuba dan ingin mencuba boleh lihat di &lt;a href=&quot;/blog/2015/pertama-kali-menggunakan-closure.html&quot;&gt;post ini&lt;/a&gt;. Jika tak mahu, boleh teruskan membaca untuk lihat cara saya menyelesaikannya.&lt;/p&gt;
 &lt;p&gt;Jadi, kenapa kena guna closure? Saje, supaya code nampak lebih elegant. Kalau boleh semua function saya nak guna closure.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/blog/images/all-closures.png&quot; alt=&quot;Write all the functions with closure!!!&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/all-closures.png&quot; alt=&quot;Write all the functions with closure!!!&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Baiklah. Code sebelum ini masih ada bahagian yang berulang, iaitu:&lt;/p&gt;
 &lt;pre class=&quot;prettyprint&quot;&gt;
 &lt;code&gt;
@@ -294,12 +294,12 @@ $(&quot;#verify-password-input&quot;).keyup(showIcon(0, toggleIcon(verify)));
     </item>
     <item>
       <title>Pertama Kali Menggunakan &apos;Closure&apos;</title>
-      <link>http://www.burhanloey.com/blog/2015/pertama-kali-menggunakan-closure.html</link>
+      <link>http://www.burhanloey.com/blog/post/2015/pertama-kali-menggunakan-closure.html</link>
       <pubDate>Sun, 18 Oct 2015 00:00:00 +0800</pubDate>
-      <guid isPermaLink="false">blog/2015/pertama-kali-menggunakan-closure.html</guid>
+      <guid isPermaLink="false">post/2015/pertama-kali-menggunakan-closure.html</guid>
       	<description>
 	&lt;p&gt;Saya masih baru dalam web development dan functional programming. Semasa belajar functional programming dengan Scala, ada beberapa konsep dan teknik yang rasa-rasa macam faham, rasa-rasa macam tak, rasa-rasa tak pasti, antaranya lambda expression, map reduce, closure, dan monad.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/blog/images/i-dont-get-it.png&quot; alt=&quot;I don&apos;t get it&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/i-dont-get-it.png&quot; alt=&quot;I don&apos;t get it&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Semuanya terjawab sedikit demi sedikit apabila saya mula menggunakan JavaScript. Dalam tutorial Scala, kita terus menggunakan simbol-simbol seperti simbol lambda, jadi kita tak beberapa nak nampak apa yang berlaku under the hood semasa menggunakan simbol lambda. Berlainan dengan JavaScript, di mana kita perlu menulis anonymous function untuk membuat map reduce tanpa menggunakan simbol lambda. Lambda expression untuk JavaScript akan ada support dalam ECMAScript 6 nanti.&lt;/p&gt;
 &lt;p&gt;Berbalik pada tajuk asal, antara feature dalam functional programming ialah closure. Kalau tengok pada mana-mana tutorial, contoh yang mereka beri adalah untuk menunjukkan bagaimana return function boleh akses variable dalam function yang lain. Jadi, saya pun tertanya-tanya, &quot;Apa yang special-nya?&quot;, saya boleh sahaja letak variable tersebut sebagai global dan akses dari mana-mana sahaja, betul tak? Pendapat saya itu kekal sehinggalah saya cuba membuat web development, barulah saya nampak betapa awesome-nya konsep closure ini.&lt;/p&gt;
 &lt;p&gt;Sebelum itu, saya nak tunjuk masalah apa yang saya nak selesaikan, iaitu sign up form. Jangan gelak, saya masih baru.&lt;/p&gt;
