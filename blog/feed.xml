@@ -6,8 +6,8 @@
     <atom:link href="http://www.burhanloey.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>JVM enthusiast, functional programming fanboy, and computer vision hobbyist</description>
     <language>en-gb</language>
-    <pubDate>Sat, 18 Feb 2017 17:14:08 +0800</pubDate>
-    <lastBuildDate>Sat, 18 Feb 2017 17:14:08 +0800</lastBuildDate>
+    <pubDate>Sun, 19 Feb 2017 12:55:01 +0800</pubDate>
+    <lastBuildDate>Sun, 19 Feb 2017 12:55:01 +0800</lastBuildDate>
 
     <item>
       <title>Concurrency Model dalam Clojure</title>
@@ -26,7 +26,7 @@
   &lt;li&gt;&lt;a href=&quot;https://github.com/funcool/promesa&quot;&gt;promesa&lt;/a&gt; (library untuk menggunakan CompletableFuture Java 8)&lt;/li&gt;
   &lt;li&gt;parallel workers (interop dengan Java)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Future/promise&lt;/strong&gt; sememangnya sudah ada secara &lt;em&gt;native&lt;/em&gt; dalam Clojure. Saya memang suka model yang ini terutamanya apabila Clojure menggunakan &lt;em&gt;immutable data&lt;/em&gt; secara &lt;em&gt;default&lt;/em&gt; jadi saya tidak perlu bimbang dengan &lt;em&gt;race condition&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Future/promise&lt;/strong&gt; sememangnya sudah ada secara &lt;em&gt;native&lt;/em&gt; dalam Clojure. Saya memang suka model yang ini terutamanya apabila Clojure menggunakan &lt;em&gt;immutable data&lt;/em&gt; secara &lt;em&gt;default&lt;/em&gt; jadi saya tidak perlu bimbang dengan &lt;em&gt;race condition&lt;/em&gt;. &lt;strong&gt;Atoms&lt;/strong&gt;, &lt;strong&gt;agents&lt;/strong&gt;, dan &lt;strong&gt;refs&lt;/strong&gt; boleh digunakan untuk menguruskan &lt;em&gt;state&lt;/em&gt;, jadi saya tidak perlu menggunakan &lt;em&gt;lock&lt;/em&gt; seperti Java 7.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Coroutine&lt;/strong&gt; adalah model yang sama digunakan dalam programming language Go. Model ini menghantar proses melalui &lt;em&gt;channel&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Actor model&lt;/strong&gt; pula digunakan dalam programming language seperti Scala dan Erlang. Saya tidak tahu sangat tentang actor model.&lt;/p&gt;
 &lt;p&gt;Library &lt;strong&gt;promesa&lt;/strong&gt; membolehkan programmer Clojure menulis code seperti Java 8, tetapi saya cuba elakkan kerana perlu menggunakan library luar.&lt;/p&gt;
