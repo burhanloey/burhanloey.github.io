@@ -6,8 +6,8 @@
     <atom:link href="http://www.burhanloey.com/blog/feed.xml" rel="self" type="application/rss+xml" />
     <description>JVM enthusiast, functional programming fanboy, and computer vision hobbyist</description>
     <language>en-gb</language>
-    <pubDate>Sun, 19 Feb 2017 13:31:09 +0800</pubDate>
-    <lastBuildDate>Sun, 19 Feb 2017 13:31:09 +0800</lastBuildDate>
+    <pubDate>Sun, 19 Feb 2017 13:52:01 +0800</pubDate>
+    <lastBuildDate>Sun, 19 Feb 2017 13:52:01 +0800</lastBuildDate>
 
     <item>
       <title>Concurrency Model dalam Clojure</title>
