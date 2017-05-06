@@ -6,9 +6,31 @@
     <atom:link href="http://www.burhanloey.com/blog/feed.xml" rel="self" type="application/rss+xml" />
     <description>JVM enthusiast, functional programming fanboy, and computer vision hobbyist</description>
     <language>en-gb</language>
-    <pubDate>Sun, 19 Feb 2017 14:02:53 +0800</pubDate>
-    <lastBuildDate>Sun, 19 Feb 2017 14:02:53 +0800</lastBuildDate>
+    <pubDate>Sat, 6 May 2017 12:12:08 +0800</pubDate>
+    <lastBuildDate>Sat, 6 May 2017 12:12:08 +0800</lastBuildDate>
 
+    <item>
+      <title>Greenspun&apos;s Tenth Rule</title>
+      <link>http://www.burhanloey.com/blog/post/2017/greenspun-tenth-rule.html</link>
+      <pubDate>Sat, 6 May 2017 00:00:00 +0800</pubDate>
+      <guid isPermaLink="false">post/2017/greenspun-tenth-rule.html</guid>
+      	<description>
+	&lt;p&gt;Seperti yang saya ceritakan di post sebelum ini, di tempat kerja kami menggunakan feature dari Java 8 untuk membuat &lt;em&gt;concurrency&lt;/em&gt; iaitu dengan menggunakan interface &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html&quot;&gt;CompletableFuture&lt;/a&gt;. Ada satu masa salah seorang dari team perlu membuat beberapa proses yang sangat kompleks sehingga melibatkan lebih daripada tujuh proses serentak.&lt;/p&gt;
+&lt;p&gt;Masalah berpunca kerana Java 8 hanya menyediakan &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html&quot;&gt;BiFunction&lt;/a&gt; yang kita boleh gunakan untuk method &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#thenCombine-java.util.concurrent.CompletionStage-java.util.function.BiFunction-&quot;&gt;thenCombine&lt;/a&gt;. Maksudnya method tersebut hanya boleh menerima dua proses sahaja. Jika kita mahu lebih daripada dua, kita boleh menggunakan library &lt;a href=&quot;https://github.com/vavr-io/vavr&quot;&gt;Javaslang/Vavr&lt;/a&gt; dan menggunakan interface Function3, Function4, dan sebagainya tetapi itu topik yang lain.&lt;/p&gt;
+&lt;p&gt;Untuk menyelesaikan proses serentak yang lebih daripada dua, Java 8 ada menyediakan method &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#allOf-java.util.concurrent.CompletableFuture...-&quot;&gt;allOf&lt;/a&gt;. Namun, method tersebut pun ada karenahnya sendiri.&lt;/p&gt;
+&lt;p&gt;Yang pertama, parameter untuk &lt;strong&gt;allOf&lt;/strong&gt; ialah &lt;em&gt;variadic&lt;/em&gt;. Maksudnya method tersebut boleh menerima tak kira berapa banyak argument yang kita mahu letak, ataupun hanya letak array. Oops, tunggu dulu, kita tidak boleh meletakkan array untuk &lt;strong&gt;allOf&lt;/strong&gt; sebab CompletableFuture ialah &lt;em&gt;generic interface&lt;/em&gt;. Dalam Java kita tidak boleh membuat array untuk generic. Error tersebut dipanggil &lt;em&gt;generic array creation error&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Yang kedua, method &lt;strong&gt;allOf&lt;/strong&gt; akan return CompletableFuture dengan data type &lt;em&gt;Void&lt;/em&gt;. Ya, &lt;em&gt;VOID&lt;/em&gt;. Memang ramai yang complain pasal ini.&lt;/p&gt;
+&lt;p&gt;Jadi, untuk menggunakan &lt;strong&gt;allOf&lt;/strong&gt; kita perlu menghantar argument satu per satu, kemudian untuk mendapatkan &lt;em&gt;result&lt;/em&gt; kita ambik balik daripada Future masing-masing menggunakan &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#join--&quot;&gt;join&lt;/a&gt;. Sesiapa yang dah boleh agak, ya, code tersebut memang akan jadi sangatlah buruk.&lt;/p&gt;
+&lt;p&gt;Sekarang kita patah balik ke programming language Clojure. Di post yang sama sebelum ini, saya juga ada perkenalkan library Clojure yang menggunakan CompletableFuture dari Java 8, iaitu library &lt;a href=&quot;https://github.com/funcool/promesa&quot;&gt;promesa&lt;/a&gt;. Saya pun intai-intai macam mana library tersebut mengendalikan masalah ini.&lt;/p&gt;
+&lt;p&gt;Seperti yang saya jangkakan, &lt;a href=&quot;http://funcool.github.io/promesa/latest/#working-with-collections&quot;&gt;sangat simple, sangat mudah&lt;/a&gt;. Ya rabbi, kedua-dua isu yang saya senaraikan di atas terus hilang.&lt;/p&gt;
+&lt;p&gt;Secara jujurnya saya memang tepuk dahi sewaktu membaca documentation tersebut.&lt;/p&gt;
+&lt;p&gt;Akhir kata, jika nak dikaitkan dengan tajuk artikel ini, saya masih setuju dengan pendapat &lt;a href=&quot;https://en.wikipedia.org/wiki/Greenspun%27s_tenth_rule&quot;&gt;Greenspun&apos;s tenth rule&lt;/a&gt; yang menyatakan:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Any sufficiently complicated C or Fortran program contains an ad-hoc,
+informally-specified, bug-ridden, slow implementation of half of Common Lisp.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cuma ganti C dengan Java, dan Common Lisp dengan Clojure sebab mereka adik-beradik.&lt;/p&gt;
+	</description>
+    </item>
     <item>
       <title>Concurrency Model dalam Clojure</title>
       <link>http://www.burhanloey.com/blog/post/2017/concurrency-model-dalam-clojure.html</link>

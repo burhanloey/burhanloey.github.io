@@ -60,7 +60,7 @@
 			<h1>Concurrency Model dalam Clojure</h1>
 		</div>
 
-		<p><em>18 February 2017</em></p>
+		<span><em>18 February 2017</em></span>
 
 		<p><p>Di tempat kerja, kami perlu memindahkan teknologi daripada menggunakan Drupal 7 ke <a href="https://www.playframework.com">Play Framework</a> (Java) kerana Drupal sudah tidak mampu lagi untuk menampung bilangan <em>request</em> daripada pengguna. Seperti yang dikhabarkan oleh senior programmer, pada asalnya mereka berpindah ke <a href="http://vertx.io">Vert.x</a> dengan cara <em>load</em> code PHP ke JVM dan masih boleh meningkatkan bilangan <em>request</em> sepuluh kali ganda. Saya pun terkejut. Namun, mereka akhirnya bertukar ke Play Framework kerana Vert.x seperti terlalu <em>minimal</em>.</p>
 <p>Semasa menulis code untuk Play Framework, saya diingatkan untuk menulis code menggunakan <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a>, salah satu <em>feature</em> baru dalam Java 8. CompletableFuture dalam Java 8 sama sahaja seperti future/promise yang ada dalam programming language yang lain seperti Clojure. Promise untuk Java 8 adalah dengan menggunakan interface <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html">CompletionStage</a>.</p>
@@ -90,7 +90,7 @@
     
     <div id="footer">
       <div class="container text-right">
-        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.5.0</a></p>
+        <p class="muted credit">&copy; 2017 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.5.1</a></p>
       </div>
     </div>
     

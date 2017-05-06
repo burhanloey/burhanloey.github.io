@@ -59,8 +59,24 @@
 		<div class="page-header">
 			<h1>Blog</h1>
 		</div>
+	  			<a href="post/2017/greenspun-tenth-rule.html"><h1>Greenspun&apos;s Tenth Rule</h1></a>
+	  			<span>06 May 2017</span>
+	  			<p><p>Seperti yang saya ceritakan di post sebelum ini, di tempat kerja kami menggunakan feature dari Java 8 untuk membuat <em>concurrency</em> iaitu dengan menggunakan interface <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a>. Ada satu masa salah seorang dari team perlu membuat beberapa proses yang sangat kompleks sehingga melibatkan lebih daripada tujuh proses serentak.</p>
+<p>Masalah berpunca kerana Java 8 hanya menyediakan <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html">BiFunction</a> yang kita boleh gunakan untuk method <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#thenCombine-java.util.concurrent.CompletionStage-java.util.function.BiFunction-">thenCombine</a>. Maksudnya method tersebut hanya boleh menerima dua proses sahaja. Jika kita mahu lebih daripada dua, kita boleh menggunakan library <a href="https://github.com/vavr-io/vavr">Javaslang/Vavr</a> dan menggunakan interface Function3, Function4, dan sebagainya tetapi itu topik yang lain.</p>
+<p>Untuk menyelesaikan proses serentak yang lebih daripada dua, Java 8 ada menyediakan method <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#allOf-java.util.concurrent.CompletableFuture...-">allOf</a>. Namun, method tersebut pun ada karenahnya sendiri.</p>
+<p>Yang pertama, parameter untuk <strong>allOf</strong> ialah <em>variadic</em>. Maksudnya method tersebut boleh menerima tak kira berapa banyak argument yang kita mahu letak, ataupun hanya letak array. Oops, tunggu dulu, kita tidak boleh meletakkan array untuk <strong>allOf</strong> sebab CompletableFuture ialah <em>generic interface</em>. Dalam Java kita tidak boleh membuat array untuk generic. Error tersebut dipanggil <em>generic array creation error</em>.</p>
+<p>Yang kedua, method <strong>allOf</strong> akan return CompletableFuture dengan data type <em>Void</em>. Ya, <em>VOID</em>. Memang ramai yang complain pasal ini.</p>
+<p>Jadi, untuk menggunakan <strong>allOf</strong> kita perlu menghantar argument satu per satu, kemudian untuk mendapatkan <em>result</em> kita ambik balik daripada Future masing-masing menggunakan <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#join--">join</a>. Sesiapa yang dah boleh agak, ya, code tersebut memang akan jadi sangatlah buruk.</p>
+<p>Sekarang kita patah balik ke programming language Clojure. Di post yang sama sebelum ini, saya juga ada perkenalkan library Clojure yang menggunakan CompletableFuture dari Java 8, iaitu library <a href="https://github.com/funcool/promesa">promesa</a>. Saya pun intai-intai macam mana library tersebut mengendalikan masalah ini.</p>
+<p>Seperti yang saya jangkakan, <a href="http://funcool.github.io/promesa/latest/#working-with-collections">sangat simple, sangat mudah</a>. Ya rabbi, kedua-dua isu yang saya senaraikan di atas terus hilang.</p>
+<p>Secara jujurnya saya memang tepuk dahi sewaktu membaca documentation tersebut.</p>
+<p>Akhir kata, jika nak dikaitkan dengan tajuk artikel ini, saya masih setuju dengan pendapat <a href="https://en.wikipedia.org/wiki/Greenspun%27s_tenth_rule">Greenspun's tenth rule</a> yang menyatakan:</p>
+<pre><code>Any sufficiently complicated C or Fortran program contains an ad-hoc,
+informally-specified, bug-ridden, slow implementation of half of Common Lisp.
+</code></pre>
+<p>Cuma ganti C dengan Java, dan Common Lisp dengan Clojure sebab mereka adik-beradik.</p></p>
 	  			<a href="post/2017/concurrency-model-dalam-clojure.html"><h1>Concurrency Model dalam Clojure</h1></a>
-	  			<p>18 February 2017</p>
+	  			<span>18 February 2017</span>
 	  			<p><p>Di tempat kerja, kami perlu memindahkan teknologi daripada menggunakan Drupal 7 ke <a href="https://www.playframework.com">Play Framework</a> (Java) kerana Drupal sudah tidak mampu lagi untuk menampung bilangan <em>request</em> daripada pengguna. Seperti yang dikhabarkan oleh senior programmer, pada asalnya mereka berpindah ke <a href="http://vertx.io">Vert.x</a> dengan cara <em>load</em> code PHP ke JVM dan masih boleh meningkatkan bilangan <em>request</em> sepuluh kali ganda. Saya pun terkejut. Namun, mereka akhirnya bertukar ke Play Framework kerana Vert.x seperti terlalu <em>minimal</em>.</p>
 <p>Semasa menulis code untuk Play Framework, saya diingatkan untuk menulis code menggunakan <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a>, salah satu <em>feature</em> baru dalam Java 8. CompletableFuture dalam Java 8 sama sahaja seperti future/promise yang ada dalam programming language yang lain seperti Clojure. Promise untuk Java 8 adalah dengan menggunakan interface <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html">CompletionStage</a>.</p>
 <p>Selepas beberapa minggu menulis <em>fully asynchronous code</em> dalam Java 8, terdetik hati untuk menulis <em>asynchronous code</em> dalam programming language kegemaran saya iaitu Clojure.</p>
@@ -79,7 +95,7 @@
 <p>Untuk <strong>parallel workers</strong>, nasihat saya cuba elakkan.</p>
 <p>Setelah melihat beberapa pilihan ini, saya menyangkakan pilihan cuma bergantung kepada programmer sahaja, ikut mana yang diminati. Namun, saya ada terbaca di stackoverflow yang menyatakan untuk memilih concurrency model perlulah mengikut situasi. Cuma saya masih belum nampak lagi.</p></p>
 	  			<a href="post/2016/etika-web-scraping.html"><h1>Etika Web Scraping</h1></a>
-	  			<p>10 February 2016</p>
+	  			<span>10 February 2016</span>
 	  			<p><p>Baru-baru ini saya ada praktis concurrency dengan membuat web scraping menggunakan C++11. Sebelum ini saya takut untuk programming menggunakan C++ sebab terpaksa membuat memory management secara manual. Selepas membaca segala best practice untuk C++, barulah nampak yang C++11/C++14 boleh tahan elegant-nya. Yang nampak kurang sedap bila ada orang mengaku pandai C++ tapi programming macam C.</p>
 <p>Berbalik ke cerita web scraping, C++ memang elegant, sehinggalah kena guna library C. Kalau tak jumpa wrapper C++ untuk library tersebut, mulut memang akan sumpah seranah waktu programming. Saya menggunakan library 'libcurl' untuk mendapatkan HTML daripada website, 'libxml2' untuk parse code HTML, dan library Boost untuk membuat concurrency.</p>
 <p>'libcurl' dan 'libxml2' memang sudah ada wrapper C++, tetapi untuk educational purpose, saya cuba untuk wrap sendiri library tersebut menggunakan kaedah Resource Acquisition Is Initialization (RAII). Kaedah RAII memang selalu digunakan dalam C++ untuk memudahkan memory management.</p>
@@ -88,7 +104,7 @@
 <p>Kemudian saya pun tengoklah macam mana rupa code HTML yang saya fetch tersebut. Barulah perasan yang saya dah kena block daripada website tersebut. Seperti semua sedia maklum, program C++ sememangnya laju. Jadi web scraping dengan concurrency akan jadi amat laju dan berpotensi membuatkan pemilik website tersebut berasa bimbang, lantas akan menghalang kita daripada mengakses website mereka.</p>
 <p>Kesimpulannya, moral of the story untuk kisah ini ialah kita mestilah beretika semasa membuat web scraping. Seboleh-bolehnya jangan memaksa sangat website tersebut untuk handle request daripada program kita. Tak perlu laju-laju sangat pun takpe, janji dapat data yang dihajati. Kalau nak lagi elok, minta izin daripada pemilik website tersebut untuk membuat web scraping, lagi bagus.</p></p>
 	  			<a href="post/2015/misi-mencari-ide-untuk-go.html"><h1>Misi Mencari IDE Untuk Go</h1></a>
-	  			<p>22 October 2015</p>
+	  			<span>22 October 2015</span>
 	  			<p><p><strong>UPDATE</strong>: Selepas beberapa hari menggunakan Atom, saya jumpa satu bug. Kalau saya ada masa untuk reproduce bug tersebut, saya akan submit issue. Jadi, untuk mengelak daripada bug tersebut, saya kembali menggunakan LiteIDE dan mendapati IDE tersebut sudah boleh 'nampak' package <code>appengine</code> disebabkan langkah-langkah yang saya lakukan di bawah. Yay!</p>
 <p>Pada masa akan datang, mungkin saya akan cuba Eclipse pulak.</p>
 <hr/>
@@ -107,7 +123,7 @@ mklink /J $GOPATH/src/appengine_internal c:\go_appengine\goroot\src\appengine_in
 <p>Walaupun semua steps di atas agak leceh, saya tetap berpuas hati.</p>
 <p>Alternatif kepada semua cara di atas adalah dengan menggunakan package <code>appengine</code> yang baru iaitu <code>google.golang.org/appengine</code>. Tetapi dengan menggunakan package tersebut, saya tidak dapat code auto-completion jika menggunakan package yang berada di dalamnya seperti <code>google.golang.org/appengine/user</code> dan <code>google.golang.org/appengine/log</code>.</p></p>
 	  			<a href="post/2015/pertama-kali-menggunakan-closure-sambungan.html"><h1>Pertama Kali Menggunakan &apos;Closure&apos;(sambungan...)</h1></a>
-	  			<p>19 October 2015</p>
+	  			<span>19 October 2015</span>
 	  			<p><p>Sebelum ini saya ada tunjuk bagaimana kita boleh menggunakan closure untuk menggabungkan satu function dengan function yang lain. Di bahagian paling bawah post tersebut, saya ada meminta pembaca untuk selesaikan code yang masih ada bahagian berulang. Jika anda belum mencuba dan ingin mencuba boleh lihat di <a href="/blog/2015/pertama-kali-menggunakan-closure.html">post ini</a>. Jika tak mahu, boleh teruskan membaca untuk lihat cara saya menyelesaikannya.</p>
 <p>Jadi, kenapa kena guna closure? Saje, supaya code nampak lebih elegant. Kalau boleh semua function saya nak guna closure.</p>
 <p><img src="/images/all-closures.png" alt="Write all the functions with closure!!!" /></p>
@@ -319,7 +335,7 @@ $("#verify-password-input").keyup(showIcon(0, toggleIcon(verify)));
 <p>Bandingkan dengan code sebelum ini, yang mana lebih anda suka?</p>
 <p>Kesimpulannya, closure is awesome. Seperti yang tertulis di Mozilla, kita boleh menggunakan closure sebagai 'function factory'. Anda boleh baca dengan lebih lanjut di contoh makeAdder di <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures#Closure">sini</a>.</p></p>
 	  			<a href="post/2015/pertama-kali-menggunakan-closure.html"><h1>Pertama Kali Menggunakan &apos;Closure&apos;</h1></a>
-	  			<p>18 October 2015</p>
+	  			<span>18 October 2015</span>
 	  			<p><p>Saya masih baru dalam web development dan functional programming. Semasa belajar functional programming dengan Scala, ada beberapa konsep dan teknik yang rasa-rasa macam faham, rasa-rasa macam tak, rasa-rasa tak pasti, antaranya lambda expression, map reduce, closure, dan monad.</p>
 <p><img src="/images/i-dont-get-it.png" alt="I don't get it" /></p>
 <p>Semuanya terjawab sedikit demi sedikit apabila saya mula menggunakan JavaScript. Dalam tutorial Scala, kita terus menggunakan simbol-simbol seperti simbol lambda, jadi kita tak beberapa nak nampak apa yang berlaku under the hood semasa menggunakan simbol lambda. Berlainan dengan JavaScript, di mana kita perlu menulis anonymous function untuk membuat map reduce tanpa menggunakan simbol lambda. Lambda expression untuk JavaScript akan ada support dalam ECMAScript 6 nanti.</p>
@@ -441,7 +457,7 @@ $("#verify-password-input").keyup(showIcon(verifyPassword));
     
     <div id="footer">
       <div class="container text-right">
-        <p class="muted credit">&copy; 2016 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.5.0</a></p>
+        <p class="muted credit">&copy; 2017 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.5.1</a></p>
       </div>
     </div>
     
