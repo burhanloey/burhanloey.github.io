@@ -1,0 +1,3 @@
+User-agent: *
+Sitemap: http://www.burhanloey.com/sitemap.xml
+Sitemap: http://www.burhanloey.com/blog/sitemap.xml
