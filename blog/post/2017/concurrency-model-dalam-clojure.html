@@ -62,9 +62,7 @@
 
 		<span><em>18 February 2017</em></span>
 
-		<p><p>Di tempat kerja, kami perlu memindahkan teknologi daripada menggunakan Drupal 7 ke <a href="https://www.playframework.com">Play Framework</a> (Java) kerana Drupal sudah tidak mampu lagi untuk menampung bilangan <em>request</em> daripada pengguna. Seperti yang dikhabarkan oleh senior programmer, pada asalnya mereka berpindah ke <a href="http://vertx.io">Vert.x</a> dengan cara <em>load</em> code PHP ke JVM dan masih boleh meningkatkan bilangan <em>request</em> sepuluh kali ganda. Saya pun terkejut. Namun, mereka akhirnya bertukar ke Play Framework kerana Vert.x seperti terlalu <em>minimal</em>.</p>
-<p>Semasa menulis code untuk Play Framework, saya diingatkan untuk menulis code menggunakan <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html">CompletableFuture</a>, salah satu <em>feature</em> baru dalam Java 8. CompletableFuture dalam Java 8 sama sahaja seperti future/promise yang ada dalam programming language yang lain seperti Clojure. Promise untuk Java 8 adalah dengan menggunakan interface <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html">CompletionStage</a>.</p>
-<p>Selepas beberapa minggu menulis <em>fully asynchronous code</em> dalam Java 8, terdetik hati untuk menulis <em>asynchronous code</em> dalam programming language kegemaran saya iaitu Clojure.</p>
+		<p><p>Selepas beberapa minggu menulis <em>fully asynchronous code</em> dalam Java 8, terdetik hati untuk menulis <em>asynchronous code</em> dalam programming language kegemaran saya iaitu Clojure.</p>
 <p>Setelah menggodek internet, saya mendapati Clojure ada beberapa model untuk membuat <em>concurrency</em>, antaranya:</p>
 <ul>
   <li>future/promise</li>

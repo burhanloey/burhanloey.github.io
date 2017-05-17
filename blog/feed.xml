@@ -6,8 +6,8 @@
     <atom:link href="http://www.burhanloey.com/blog/feed.xml" rel="self" type="application/rss+xml" />
     <description>JVM enthusiast, functional programming fanboy, and computer vision hobbyist</description>
     <language>en-gb</language>
-    <pubDate>Sat, 6 May 2017 12:12:08 +0800</pubDate>
-    <lastBuildDate>Sat, 6 May 2017 12:12:08 +0800</lastBuildDate>
+    <pubDate>Thu, 18 May 2017 04:19:48 +0800</pubDate>
+    <lastBuildDate>Thu, 18 May 2017 04:19:48 +0800</lastBuildDate>
 
     <item>
       <title>Greenspun&apos;s Tenth Rule</title>
@@ -15,7 +15,7 @@
       <pubDate>Sat, 6 May 2017 00:00:00 +0800</pubDate>
       <guid isPermaLink="false">post/2017/greenspun-tenth-rule.html</guid>
       	<description>
-	&lt;p&gt;Seperti yang saya ceritakan di post sebelum ini, di tempat kerja kami menggunakan feature dari Java 8 untuk membuat &lt;em&gt;concurrency&lt;/em&gt; iaitu dengan menggunakan interface &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html&quot;&gt;CompletableFuture&lt;/a&gt;. Ada satu masa salah seorang dari team perlu membuat beberapa proses yang sangat kompleks sehingga melibatkan lebih daripada tujuh proses serentak.&lt;/p&gt;
+	&lt;p&gt;Sebelum ini saya pernah menggunakan feature dari Java 8 untuk membuat &lt;em&gt;concurrency&lt;/em&gt; iaitu dengan menggunakan interface &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html&quot;&gt;CompletableFuture&lt;/a&gt;. Ada suatu ketika, interface tersebut bukannya memudahkan, tapi merumitkan lagi keadaan.&lt;/p&gt;
 &lt;p&gt;Masalah berpunca kerana Java 8 hanya menyediakan &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html&quot;&gt;BiFunction&lt;/a&gt; yang kita boleh gunakan untuk method &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#thenCombine-java.util.concurrent.CompletionStage-java.util.function.BiFunction-&quot;&gt;thenCombine&lt;/a&gt;. Maksudnya method tersebut hanya boleh menerima dua proses sahaja. Jika kita mahu lebih daripada dua, kita boleh menggunakan library &lt;a href=&quot;https://github.com/vavr-io/vavr&quot;&gt;Javaslang/Vavr&lt;/a&gt; dan menggunakan interface Function3, Function4, dan sebagainya tetapi itu topik yang lain.&lt;/p&gt;
 &lt;p&gt;Untuk menyelesaikan proses serentak yang lebih daripada dua, Java 8 ada menyediakan method &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html#allOf-java.util.concurrent.CompletableFuture...-&quot;&gt;allOf&lt;/a&gt;. Namun, method tersebut pun ada karenahnya sendiri.&lt;/p&gt;
 &lt;p&gt;Yang pertama, parameter untuk &lt;strong&gt;allOf&lt;/strong&gt; ialah &lt;em&gt;variadic&lt;/em&gt;. Maksudnya method tersebut boleh menerima tak kira berapa banyak argument yang kita mahu letak, ataupun hanya letak array. Oops, tunggu dulu, kita tidak boleh meletakkan array untuk &lt;strong&gt;allOf&lt;/strong&gt; sebab CompletableFuture ialah &lt;em&gt;generic interface&lt;/em&gt;. Dalam Java kita tidak boleh membuat array untuk generic. Error tersebut dipanggil &lt;em&gt;generic array creation error&lt;/em&gt;.&lt;/p&gt;
@@ -37,9 +37,7 @@ informally-specified, bug-ridden, slow implementation of half of Common Lisp.
       <pubDate>Sat, 18 Feb 2017 00:00:00 +0800</pubDate>
       <guid isPermaLink="false">post/2017/concurrency-model-dalam-clojure.html</guid>
       	<description>
-	&lt;p&gt;Di tempat kerja, kami perlu memindahkan teknologi daripada menggunakan Drupal 7 ke &lt;a href=&quot;https://www.playframework.com&quot;&gt;Play Framework&lt;/a&gt; (Java) kerana Drupal sudah tidak mampu lagi untuk menampung bilangan &lt;em&gt;request&lt;/em&gt; daripada pengguna. Seperti yang dikhabarkan oleh senior programmer, pada asalnya mereka berpindah ke &lt;a href=&quot;http://vertx.io&quot;&gt;Vert.x&lt;/a&gt; dengan cara &lt;em&gt;load&lt;/em&gt; code PHP ke JVM dan masih boleh meningkatkan bilangan &lt;em&gt;request&lt;/em&gt; sepuluh kali ganda. Saya pun terkejut. Namun, mereka akhirnya bertukar ke Play Framework kerana Vert.x seperti terlalu &lt;em&gt;minimal&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Semasa menulis code untuk Play Framework, saya diingatkan untuk menulis code menggunakan &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html&quot;&gt;CompletableFuture&lt;/a&gt;, salah satu &lt;em&gt;feature&lt;/em&gt; baru dalam Java 8. CompletableFuture dalam Java 8 sama sahaja seperti future/promise yang ada dalam programming language yang lain seperti Clojure. Promise untuk Java 8 adalah dengan menggunakan interface &lt;a href=&quot;https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html&quot;&gt;CompletionStage&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Selepas beberapa minggu menulis &lt;em&gt;fully asynchronous code&lt;/em&gt; dalam Java 8, terdetik hati untuk menulis &lt;em&gt;asynchronous code&lt;/em&gt; dalam programming language kegemaran saya iaitu Clojure.&lt;/p&gt;
+	&lt;p&gt;Selepas beberapa minggu menulis &lt;em&gt;fully asynchronous code&lt;/em&gt; dalam Java 8, terdetik hati untuk menulis &lt;em&gt;asynchronous code&lt;/em&gt; dalam programming language kegemaran saya iaitu Clojure.&lt;/p&gt;
 &lt;p&gt;Setelah menggodek internet, saya mendapati Clojure ada beberapa model untuk membuat &lt;em&gt;concurrency&lt;/em&gt;, antaranya:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;future/promise&lt;/li&gt;
