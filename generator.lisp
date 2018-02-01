@@ -33,7 +33,19 @@
                             :description "Automatically bust cache on compilation."
                             :source "https://github.com/burhanloey/cljs-simple-cache-buster"
                             :cta "Get it"
-                            :cta-url "https://clojars.org/cljs-simple-cache-buster")))
+                            :cta-url "https://clojars.org/cljs-simple-cache-buster")
+                           (:title "youtube-decompile"
+                            :image "images/youtube_decompile.png"
+                            :description "Split long YouTube videos using timestamps from comment."
+                            :source "https://github.com/burhanloey/youtube-decompile"
+                            :cta "Live"
+                            :cta-url "https://www.burhanloey.com/youtube-decompile/")
+                           (:title "robot-arm"
+                            :image "images/robot_arm.png"
+                            :description "Robot arm movement using jointed spherical model."
+                            :source "https://github.com/burhanloey/robot-arm"
+                            :cta "Live"
+                            :cta-url "https://www.burhanloey.com/robot-arm/")))
 
 (defmacro with-page (&body body)
   `(with-html-string
