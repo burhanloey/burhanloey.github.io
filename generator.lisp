@@ -6,9 +6,13 @@
 ;;   sbcl --load generator.lisp
 ;;
 
-(ql:quickload :spinneret)
+(in-package :cl-user)
 
-(in-package #:spinneret)
+(defpackage :generator
+  (:use :cl :spinneret)
+  (:export #:output-to-file))
+
+(in-package #:generator)
 
 (defparameter *projects* '((:title "spacebar-workout"
                             :image "images/spacebar.png"
@@ -120,9 +124,3 @@
                                :direction :output
                                :if-exists :supersede)
     (format output-file (generate))))
-
-(output-to-file)
-
-(format t "Done generating index.html.~%")
-
-(sb-ext:quit)
