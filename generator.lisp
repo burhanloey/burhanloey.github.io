@@ -58,10 +58,14 @@
   (with-html
     (:p (:img :src "images/face.png" :alt "portrait photo of me" :class "img-circle img-responsive center-block" :height 200 :width 200))
     (:h2 :class "lead text-center" "Burhanuddin bin Baharuddin")
+    (:p :class "text-center"
+        (:span :class "glyphicon glyphicon-envelope" :aria-hidden t)
+        " burhanclj@gmail.com")
     (:p.text-center
-     (:a :href "https://github.com/burhanloey"  (:i :class "fa fa-github" :aria-hidden t)  " GitHub") " "
-     (:a :href "https://twitter.com/burhanloey" (:i :class "fa fa-twitter" :aria-hidden t) " Twitter") " "
-     (:a :href "blog"                          (:i :class "fa fa-rss" :aria-hidden t)     " Blog"))))
+     (:a :class "btn" :href "https://github.com/burhanloey"  (:i :class "fa fa-github" :aria-hidden t)  " GitHub") " "
+     (:a :class "btn" :href "https://twitter.com/burhanloey" (:i :class "fa fa-twitter" :aria-hidden t) " Twitter") " "
+     (:a :class "btn" :href "https://www.linkedin.com/in/burhanuddin-baharuddin-ba892314a/" (:i :class "fa fa-linkedin" :aria-hidden t) " LinkedIn") ""
+     (:a :class "btn" :href "blog"                          (:i :class "fa fa-rss" :aria-hidden t)     " Blog"))))
 
 (defun languages-of-choice ()
   (with-html
@@ -90,22 +94,6 @@
               (dolist (data (remove nil (list x y z)))
                 (project-card data))))))
 
-(defun contacts ()
-  (with-html
-    (:div.row
-     (:div.col-md-6
-      (:p :class "lead text-center"
-          (:span :class "glyphicon glyphicon-envelope" :aria-hidden t)
-          (:br)
-          "burhanclj@gmail.com"))
-     (:div.col-md-6
-      (:p :class "lead text-center"
-          (:span :class "glyphicon glyphicon-map-marker" :aria-hidden t)
-          (:br)
-          "141, Jalan 17/4, Seksyen 17," (:br)
-          "46400 Petaling Jaya, Selangor," (:br)
-          "Malaysia")))))
-
 (defun generate ()
   (with-page
     (:br)
@@ -113,9 +101,7 @@
     (:hr)
     (languages-of-choice)
     (:hr)
-    (projects-gallery)
-    (:hr)
-    (contacts)))
+    (projects-gallery)))
 
 (defun output-to-file ()
   (with-open-file (output-file "index.html"
